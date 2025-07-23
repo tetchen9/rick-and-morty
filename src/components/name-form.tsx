@@ -2,16 +2,17 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useUser } from '../context/user-context'
 import TextInput from './ui/text-input'
 import Button from './ui/button'
 import { useColorModeValue } from './ui/color-mode'
-
 
 export default function NameForm() {
   const router = useRouter()
   const [name, setName] = useState('')
   const [role, setRole] = useState('')
   const [error, setError] = useState('')
+  const { setUser } = useUser()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +25,7 @@ export default function NameForm() {
       return
     }
     setError('')
+    setUser({ name: name.trim(), role: role.trim() })
     router.push('/characters/1')
   }
 

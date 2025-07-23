@@ -9,9 +9,9 @@ import { CharacterList } from 'components/character-list'
 import { GET_CHARACTERS } from 'queries/characters'
 import AppHeading from 'components/app-heading'
 import type { Character } from 'types/character'
+import withAuthGuard from 'context/with-user-guard'
 
-
-export default function CharactersPage() {
+const CharactersPage = () => {
   const params = useParams()
   const page = Number(params.page) || 1
   const { loading, error, data } = useQuery(GET_CHARACTERS, {
@@ -50,3 +50,4 @@ export default function CharactersPage() {
   )
 }
 
+export default withAuthGuard(CharactersPage)
