@@ -1,31 +1,31 @@
 
-"use client"
+'use client'
 import { useEffect, ComponentType } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from 'context/user-context'
 
 const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>) => {
-    const AuthGuardComponent = (props: P) => {
+  const AuthGuardComponent = (props: P) => {
     const { user, loading } = useUser()
     const router = useRouter()
 
     useEffect(() => {
-        if (!loading && !user) {
-            router.push('/')
-        }
+      if (!loading && !user) {
+        router.push('/')
+      }
     }, [user, loading, router])
 
     if (loading) {
-        return null
+      return null
     }
     if (!user) {
-        return null
+      return null
     }
 
-        return <WrappedComponent {...props} />
-    };
+    return <WrappedComponent {...props} />
+  }
 
-    return AuthGuardComponent
+  return AuthGuardComponent
 }
 
 export default withAuthGuard
