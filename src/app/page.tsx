@@ -1,7 +1,15 @@
+'use client'
+
+import NameForm from 'components/name-form'
+import AppHeading from 'components/app-heading'
+
 export default function Home() {
+
   return (
     <main>
-      <h1>Rick and Morty</h1>
+      <AppHeading title="Rick and Morty" />
+      <NameForm />
     </main>
   )
 }
+
