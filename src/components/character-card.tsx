@@ -1,33 +1,44 @@
 import { Box, Image, Text } from '@chakra-ui/react'
-import { useColorModeValue } from '@chakra-ui/color-mode'
+import { useColorModeValue } from './ui/color-mode'
 import type { Character } from 'types/character'
+import { getDescription } from 'app/utils/character-utils'
 
 export function CharacterCard({ char }: { char: Character }) {
+  const { 
+    name, 
+    image, 
+    location: { name: locationName }, 
+    species 
+  } = char
+
   return (
     <Box
-      maxW={'320px'}
+      maxW={'26rem'}
       w={'full'}
       bg={useColorModeValue('white', 'gray.900')}
-      boxShadow={'xl'}
+      boxShadow={'sm'}
       rounded={'lg'}
       p={6}
       textAlign={'center'}>
       <Image
-        src={char.image}
-        boxSize={{ base: '120', md: '150', lg: '180' }}
+        src={image}
+        boxSize={{ base: '8em', md: '10em', lg: '12em' }}
         borderRadius="full"
         fit="cover"
-        alt={char.name}
+        alt={name}
+        mx="auto"
       />
-      <Text fontWeight={600} fontSize="1.2em" my={4}>
-        {char.name}
+      <Text 
+        fontWeight={600} 
+        fontSize="1.2em" 
+        mt={3}>
+        {name}
       </Text>
       <Text
         textAlign={'center'}
         color={useColorModeValue('gray.700', 'gray.400')}
-        minHeight="4em"
-        px={3}>
-        A {char.species} from {char.location.name}
+      >
+        {getDescription(locationName, species)}
       </Text>
     </Box>
   )

@@ -31,6 +31,23 @@ window["IntersectionObserver"] = IntersectionObserverMock
 window.Element.prototype.scrollTo = () => {}
 window.Element.prototype.scrollIntoView = () => {}
 
+
+// Polyfill matchMedia for Chakra UI color mode support
+if (!window.matchMedia) {
+  window.matchMedia = function (query) {
+    return {
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: function () {},
+      removeListener: function () {},
+      addEventListener: function () {},
+      removeEventListener: function () {},
+      dispatchEvent: function () { return false; }
+    }
+  }
+}
+
 // requestAnimationFrame mock
 window.requestAnimationFrame = (cb) => setTimeout(cb, 1000 / 60)
 

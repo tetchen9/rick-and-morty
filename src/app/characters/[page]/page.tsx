@@ -3,11 +3,13 @@
 import { useQuery } from '@apollo/client'
 import client from 'lib/apollo-client'
 import { useParams } from 'next/navigation'
-import { ListItem, List } from '@chakra-ui/react'
+import { ListItem, Skeleton } from '@chakra-ui/react'
 import { CharacterCard } from 'components/character-card'
+import { CharacterList } from 'components/character-list'
 import { GET_CHARACTERS } from 'queries/characters'
 import AppHeading from 'components/app-heading'
 import type { Character } from 'types/character'
+
 
 export default function CharactersPage() {
   const params = useParams()
@@ -16,28 +18,34 @@ export default function CharactersPage() {
     variables: { page },
     client,
   })
+  let list
 
-  if (loading) return <main>Loading...</main>
+  if (loading) {
+    list = Array.from({ length: 8 }).map((_, i) => (
+      <ListItem key={i}>
+        <Skeleton 
+          height="320px" 
+          borderRadius="xl" 
+        />
+      </ListItem>
+    ))
+  }
+  else {
+    list = data.characters.results.map((char: Character) => (
+      <ListItem key={char.id} >
+        <CharacterCard char={char} />
+      </ListItem>
+    ))
+  }
+
   if (error) return <main>Error: {error.message}</main>
 
   return (
     <main>
       <AppHeading title="Rick and Morty Characters" />
-      <List.Root
-        as="ul"
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        flexWrap="wrap"
-        gap={4}
-        p={0} 
-        m={0} >
-        {data.characters.results.map((char: Character) => (
-          <ListItem key={char.id}>
-            <CharacterCard char={char} />
-          </ListItem>
-        ))}
-      </List.Root>
+      <CharacterList>
+        {list}
+      </CharacterList>
     </main>
   )
 }

@@ -1,15 +1,11 @@
 'use client'
-
-import { useState } from 'react'
+import { Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
-import {
-  Flex,
-  Stack,
-  Text,
-  Input,
-  Button,
-} from '@chakra-ui/react'
-import { useColorModeValue } from '@chakra-ui/color-mode'
+import { useState } from 'react'
+import TextInput from './ui/text-input'
+import Button from './ui/button'
+import { useColorModeValue } from './ui/color-mode'
+
 
 export default function NameForm() {
   const router = useRouter()
@@ -38,7 +34,7 @@ export default function NameForm() {
       justify={'center'}
       py={12}
       bg={useColorModeValue('gray.50', 'gray.800')}>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <Stack
           boxShadow={'xl'}
           bg={useColorModeValue('white', 'gray.700')}
@@ -52,55 +48,26 @@ export default function NameForm() {
             </Text>
           </Stack>
           <Stack gap={4} direction={'column'} w={'full'}>
-            <Input
-              type={'text'}
+            <TextInput
               placeholder={'Alice'}
               value={name}
               onChange={e => {
                 setName(e.target.value)
                 if (error) setError('')
-              }}
-              color={useColorModeValue('gray.800', 'gray.200')}
-              bg={useColorModeValue('gray.100', 'gray.600')}
-              rounded={'full'}
-              border={0}
-              _focus={{
-                bg: useColorModeValue('gray.200', 'gray.800'),
-                outline: 'none',
-              }}
-            />
-            <Input
-              type={'text'}
+              }} />
+            <TextInput
               placeholder={'Engineer'}
               value={role}
               onChange={e => {
                 setRole(e.target.value)
                 if (error) setError('')
-              }}
-              color={useColorModeValue('gray.800', 'gray.200')}
-              bg={useColorModeValue('gray.100', 'gray.600')}
-              rounded={'full'}
-              border={0}
-              _focus={{
-                bg: useColorModeValue('gray.200', 'gray.800'),
-                outline: 'none',
-              }}
-            />
+              }} />
             {error && (
               <Text color="red.400" fontSize="sm" textAlign="center">
                 {error}
               </Text>
             )}
-            <Button
-              type="submit"
-              bg={'blue.400'}
-              rounded={'full'}
-              color={'white'}
-              flex={'1 0 auto'}
-              _hover={{ bg: 'blue.500' }}
-              _focus={{ bg: 'blue.500' }}>
-              Submit
-            </Button>
+            <Button>Submit</Button>
           </Stack>
         </Stack>
       </form>

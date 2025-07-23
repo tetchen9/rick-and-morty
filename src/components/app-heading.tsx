@@ -1,6 +1,6 @@
 import { Heading } from '@chakra-ui/react'
-import { useColorModeValue } from '@chakra-ui/color-mode'
-
+import { useColorModeValue } from './ui/color-mode'
+ 
 type AppHeadingProps = {
   title: string;
 };
@@ -14,6 +14,7 @@ export default function AppHeading({ title }: AppHeadingProps) {
       color={useColorModeValue('gray.800', 'gray.200')}
       textAlign={'center'}
       my={6}
+      data-testid="app-heading"
     >
       {title}
     </Heading>
