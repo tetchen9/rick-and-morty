@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <ColorModeScript />
+        <ColorModeScript initialColorMode="system"/>
       </head>
       <body>
         <UserProvider>

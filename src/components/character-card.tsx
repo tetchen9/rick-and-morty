@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Image, Text } from '@chakra-ui/react'
 import { useColorModeValue } from './ui/color-mode'
 import type { Character } from 'types/character'
@@ -15,7 +17,7 @@ export function CharacterCard({ char }: { char: Character }) {
     <Box
       maxW={'26rem'}
       w={'full'}
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue('white', 'gray.800')}
       boxShadow={'sm'}
       rounded={'lg'}
       p={6}
@@ -36,7 +38,7 @@ export function CharacterCard({ char }: { char: Character }) {
       </Text>
       <Text
         textAlign={'center'}
-        color={useColorModeValue('gray.700', 'gray.400')}
+        color={useColorModeValue('gray.700', 'gray.200')}
       >
         {getDescription(locationName, species)}
       </Text>

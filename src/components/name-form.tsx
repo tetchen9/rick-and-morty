@@ -1,8 +1,9 @@
 'use client'
+
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { useUser } from '../context/user-context'
+import { useUser } from 'context/user-context'
 import TextInput from './ui/text-input'
 import Button from './ui/button'
 import { useColorModeValue } from './ui/color-mode'
@@ -30,25 +31,20 @@ export default function NameForm() {
   }
 
   return (
-    <Flex
-      minH={'80vh'}
-      align={'center'}
-      justify={'center'}
-      py={12}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
       <form onSubmit={handleSubmit}>
         <Stack
           boxShadow={'xl'}
-          bg={useColorModeValue('white', 'gray.700')}
+          bg={useColorModeValue('white', 'gray.800')}
           rounded={'xl'}
           p={10}
+          my={16}
           gap={8}
           align={'center'}>
-          <Stack align={'center'} gap={2}>
-            <Text fontSize={'lg'} color={'gray.500'}>
-              Tell us who you are
-            </Text>
-          </Stack>
+          <Text 
+            fontSize={'lg'} 
+            color={useColorModeValue('gray.500', 'gray.300')}>
+            Pluto is a planet, who are you?
+          </Text>
           <Stack gap={4} direction={'column'} w={'full'}>
             <TextInput
               placeholder={'Alice'}
@@ -73,6 +69,6 @@ export default function NameForm() {
           </Stack>
         </Stack>
       </form>
-    </Flex>
+
   )
 }

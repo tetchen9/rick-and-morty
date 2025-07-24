@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import client from 'lib/apollo-client'
 import { useParams } from 'next/navigation'
@@ -10,15 +11,25 @@ import { GET_CHARACTERS } from 'queries/characters'
 import AppHeading from 'components/app-heading'
 import type { Character } from 'types/character'
 import withAuthGuard from 'context/with-user-guard'
+import Pagination from 'components/ui/pagination'
 
 const CharactersPage = () => {
   const params = useParams()
   const page = Number(params.page) || 1
+  const [currentPage, setCurrentPage] = useState(page)
+
   const { loading, error, data } = useQuery(GET_CHARACTERS, {
-    variables: { page },
+    variables: { page: currentPage },
     client,
   })
+
+  const setPage = (newPage: number) => {
+    setCurrentPage(newPage)
+  }
+
   let list
+
+  if (error) return <main>Error: {error.message}</main>
 
   if (loading) {
     list = Array.from({ length: 8 }).map((_, i) => (
@@ -31,14 +42,13 @@ const CharactersPage = () => {
     ))
   }
   else {
+    console.log(data.characters)
     list = data.characters.results.map((char: Character) => (
       <ListItem key={char.id} >
-        <CharacterCard char={char} />
+          <CharacterCard char={char} />
       </ListItem>
     ))
   }
-
-  if (error) return <main>Error: {error.message}</main>
 
   return (
     <main>
@@ -46,6 +56,12 @@ const CharactersPage = () => {
       <CharacterList>
         {list}
       </CharacterList>
+      {!loading && <Pagination 
+        page={currentPage} 
+        setPage={setPage} 
+        count={data.characters.info.count} 
+        pageSize={20}
+      /> }
     </main>
   )
 }

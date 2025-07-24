@@ -1,9 +1,11 @@
+'use client'
+
 import { Heading } from '@chakra-ui/react'
 import { useColorModeValue } from './ui/color-mode'
  
 type AppHeadingProps = {
-  title: string;
-};
+  title: string
+}
 
 export default function AppHeading({ title }: AppHeadingProps) {
   return (
