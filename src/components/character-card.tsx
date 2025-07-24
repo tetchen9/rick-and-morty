@@ -9,7 +9,7 @@ export function CharacterCard({ char }: { char: Character }) {
   const { 
     name, 
     image, 
-    location: { name: locationName }, 
+    origin: { name: originName }, 
     species 
   } = char
 
@@ -40,7 +40,7 @@ export function CharacterCard({ char }: { char: Character }) {
         textAlign={'center'}
         color={useColorModeValue('gray.700', 'gray.200')}
       >
-        {getDescription(locationName, species)}
+        {getDescription(originName, species)}
       </Text>
     </Box>
   )

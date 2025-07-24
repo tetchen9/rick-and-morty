@@ -12,7 +12,7 @@ const TextInput: React.FC<InputProps> = (props) => {
       rounded={'full'}
       border={0}
       _focus={{
-        bg: useColorModeValue('gray.200', 'gray.800'),
+        bg: useColorModeValue('gray.200', 'gray.700'),
         outline: 'none',
       }}
       _placeholder={{ color: 'gray.400' }}

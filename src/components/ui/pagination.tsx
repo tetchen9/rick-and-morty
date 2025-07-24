@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { ButtonGroup, IconButton, Pagination as ChakraPagination, Center } from "@chakra-ui/react"
-import { useState } from "react"
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import { ButtonGroup, IconButton, Pagination as ChakraPagination, Center } from '@chakra-ui/react'
+import { useState } from 'react'
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 interface PaginationProps {
   page: number,
@@ -13,7 +13,7 @@ interface PaginationProps {
 
 const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(page)
-    console.log('Pagination component rendered with page:', currentPage, 'count:', count, 'page size:',  pageSize)
+  console.log('Pagination component rendered with page:', currentPage, 'count:', count, 'page size:',  pageSize)
   return (
     <ChakraPagination.Root
       count={Math.ceil(count / pageSize)} // total pages
@@ -27,29 +27,29 @@ const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
         setCurrentPage(e.page)
       }}
     >
-        <Center width="full">
+      <Center width="full">
         <ButtonGroup variant="ghost" size="sm" >
-            <ChakraPagination.PrevTrigger asChild>
+          <ChakraPagination.PrevTrigger asChild>
             <IconButton>
-                <HiChevronLeft />
+              <HiChevronLeft />
             </IconButton>
-            </ChakraPagination.PrevTrigger>
+          </ChakraPagination.PrevTrigger>
 
-            <ChakraPagination.Items
+          <ChakraPagination.Items
             render={(page) => (
-                <IconButton variant={{ base: "ghost", _selected: "outline" }}>
+              <IconButton variant={{ base: 'ghost', _selected: 'outline' }}>
                 {page.value}
-                </IconButton>
+              </IconButton>
             )}
-            />
+          />
 
-            <ChakraPagination.NextTrigger asChild>
+          <ChakraPagination.NextTrigger asChild>
             <IconButton>
-                <HiChevronRight />
+              <HiChevronRight />
             </IconButton>
-            </ChakraPagination.NextTrigger>
+          </ChakraPagination.NextTrigger>
         </ButtonGroup>
-        </Center>
+      </Center>
     </ChakraPagination.Root>
   )
 }

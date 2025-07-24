@@ -12,6 +12,7 @@ import AppHeading from 'components/app-heading'
 import type { Character } from 'types/character'
 import withAuthGuard from 'context/with-user-guard'
 import Pagination from 'components/ui/pagination'
+import UserText from 'components/user-text'
 
 const CharactersPage = () => {
   const params = useParams()
@@ -35,7 +36,7 @@ const CharactersPage = () => {
     list = Array.from({ length: 8 }).map((_, i) => (
       <ListItem key={i}>
         <Skeleton 
-          height="320px" 
+          height="20em" 
           borderRadius="xl" 
         />
       </ListItem>
@@ -45,7 +46,7 @@ const CharactersPage = () => {
     console.log(data.characters)
     list = data.characters.results.map((char: Character) => (
       <ListItem key={char.id} >
-          <CharacterCard char={char} />
+        <CharacterCard char={char} />
       </ListItem>
     ))
   }
@@ -53,6 +54,7 @@ const CharactersPage = () => {
   return (
     <main>
       <AppHeading title="Rick and Morty Characters" />
+      <UserText />
       <CharacterList>
         {list}
       </CharacterList>

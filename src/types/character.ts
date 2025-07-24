@@ -3,5 +3,5 @@ export type Character = {
   name: string
   image: string
   species: string
-  location: { name: string }
+  origin: { name: string }
 }

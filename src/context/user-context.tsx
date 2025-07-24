@@ -1,10 +1,6 @@
 'use client'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-
-export type UserInfo = {
-  name: string
-  role: string
-}
+import { UserInfo } from 'types/user-info'
 
 interface UserContextType {
   user: UserInfo | null

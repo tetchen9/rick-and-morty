@@ -2,7 +2,7 @@
 
 import { Heading } from '@chakra-ui/react'
 import { useColorModeValue } from './ui/color-mode'
- 
+
 type AppHeadingProps = {
   title: string
 }

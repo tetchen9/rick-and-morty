@@ -1,11 +1,12 @@
 import { Button as ChakraButton } from '@chakra-ui/react'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    children: React.ReactNode;
+    children: React.ReactNode
+    loading?: boolean
 };
 
-const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
-  <ChakraButton
+const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+  return (<ChakraButton
     type="submit"
     bg={'blue.400'}
     rounded={'full'}
@@ -17,6 +18,6 @@ const Button: React.FC<ButtonProps> = ({ children, ...props }) => (
   >
     {children}
   </ChakraButton>
-)
+)}
 
 export default Button

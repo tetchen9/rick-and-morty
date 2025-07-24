@@ -1,9 +1,19 @@
 
-export const getDescription = (location: string, species: string): string => {
+import { UserInfo } from 'types/user-info'
+
+export const getDescription = (origin: string, species: string): string => {
   if (!species) return ''
-  const from = location && location !== 'unknown' 
-    ? ` from ${location}` : ''
-  const article = species.toLowerCase().startsWith('a') 
-    ? 'An' : 'A'
-  return `${article} ${species}${from}`
+  const from = origin && origin !== 'unknown' 
+    ? ` from ${origin}` : ''
+  return `${getAnArticle(species)} ${species}${from}`
+}
+
+export const getWelcomeText = (user: UserInfo): string => {
+  if (!user) return ''
+  const { name, role } = user
+  return `${name}, ${getAnArticle(role)} ${role} from Earth`
+}
+
+const getAnArticle = (word: string): string => {
+  return /^[aieou]/i.test(word) ? 'an' : 'a'
 }

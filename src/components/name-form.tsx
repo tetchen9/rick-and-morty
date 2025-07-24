@@ -1,6 +1,6 @@
 'use client'
 
-import { Flex, Stack, Text } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useUser } from 'context/user-context'
@@ -14,6 +14,7 @@ export default function NameForm() {
   const [role, setRole] = useState('')
   const [error, setError] = useState('')
   const { setUser } = useUser()
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,47 +29,50 @@ export default function NameForm() {
     setError('')
     setUser({ name: name.trim(), role: role.trim() })
     router.push('/characters/1')
+    setLoading(!loading)
   }
 
   return (
-      <form onSubmit={handleSubmit}>
-        <Stack
-          boxShadow={'xl'}
-          bg={useColorModeValue('white', 'gray.800')}
-          rounded={'xl'}
-          p={10}
-          my={16}
-          gap={8}
-          align={'center'}>
-          <Text 
-            fontSize={'lg'} 
-            color={useColorModeValue('gray.500', 'gray.300')}>
+    <form onSubmit={handleSubmit}>
+      <Stack
+        boxShadow={'xl'}
+        bg={useColorModeValue('white', 'gray.800')}
+        rounded={'xl'}
+        p={10}
+        my={16}
+        gap={8}
+        align={'center'}>
+        <Text 
+          fontSize={'lg'} 
+          color={useColorModeValue('gray.500', 'gray.300')}>
             Pluto is a planet, who are you?
-          </Text>
-          <Stack gap={4} direction={'column'} w={'full'}>
-            <TextInput
-              placeholder={'Alice'}
-              value={name}
-              onChange={e => {
-                setName(e.target.value)
-                if (error) setError('')
-              }} />
-            <TextInput
-              placeholder={'Engineer'}
-              value={role}
-              onChange={e => {
-                setRole(e.target.value)
-                if (error) setError('')
-              }} />
-            {error && (
-              <Text color="red.400" fontSize="sm" textAlign="center">
-                {error}
-              </Text>
-            )}
-            <Button>Submit</Button>
-          </Stack>
+        </Text>
+        <Stack gap={4} direction={'column'} w={'full'}>
+          <TextInput
+            placeholder={'Alice'}
+            value={name}
+            onChange={e => {
+              setName(e.target.value)
+              if (error) setError('')
+            }} />
+          <TextInput
+            placeholder={'Engineer'}
+            value={role}
+            onChange={e => {
+              setRole(e.target.value)
+              if (error) setError('')
+            }} />
+          {error && (
+            <Text color="red.400" fontSize="sm" textAlign="center">
+              {error}
+            </Text>
+          )}
+          <Button loading={loading}>
+            Submit
+          </Button>
         </Stack>
-      </form>
+      </Stack>
+    </form>
 
   )
 }

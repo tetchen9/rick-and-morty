@@ -3,6 +3,7 @@
 import { useEffect, ComponentType } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from 'context/user-context'
+import Loading from 'components/loading'
 
 const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>) => {
   const AuthGuardComponent = (props: P) => {
@@ -15,11 +16,8 @@ const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>) => 
       }
     }, [user, loading, router])
 
-    if (loading) {
-      return null
-    }
-    if (!user) {
-      return null
+    if (loading || !user) {
+      return <Loading />
     }
 
     return <WrappedComponent {...props} />

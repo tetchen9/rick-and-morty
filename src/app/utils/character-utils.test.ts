@@ -2,19 +2,19 @@ import { describe, it, expect } from 'vitest'
 import { getDescription } from './character-utils'
 
 describe('getDescription', () => {
-  it('returns description with location and correct article for species starting with consonant', () => {
+  it('returns description with origin and correct article for species starting with consonant', () => {
     expect(getDescription('Earth', 'Human')).toBe('A Human from Earth')
   })
 
-  it('returns description with location and correct article for species starting with vowel', () => {
+  it('returns description with origin and correct article for species starting with vowel', () => {
     expect(getDescription('Mars', 'alien')).toBe('An alien from Mars')
   })
 
-  it('returns description without location', () => {
+  it('returns description without origin', () => {
     expect(getDescription('', 'Human')).toBe('A Human')
   })
 
-  it('returns description with unknown location', () => {
+  it('returns description with unknown origin', () => {
     expect(getDescription('unknown', 'Human')).toBe('A Human')
   })
 
@@ -30,15 +30,15 @@ describe('getDescription', () => {
     expect(getDescription('Earth', '')).toBe('')
   })
 
-  it('returns description with empty location and species', () => {
+  it('returns description with empty origin and species', () => {
     expect(getDescription('', '')).toBe('')
   })
 
-  it('returns description with location and species starting with "a"', () => {
+  it('returns description with origin and species starting with "a"', () => {
     expect(getDescription('Citadel', 'ant')).toBe('An ant from Citadel')
   })
 
-  it('returns description with location and species starting with "A"', () => {
+  it('returns description with origin and species starting with "A"', () => {
     expect(getDescription('Citadel', 'Ant')).toBe('An Ant from Citadel')
   })
 })
