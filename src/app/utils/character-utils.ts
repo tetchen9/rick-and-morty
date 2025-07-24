@@ -11,9 +11,10 @@ export const getDescription = (origin: string, species: string): string => {
 export const getWelcomeText = (user: UserInfo): string => {
   if (!user) return ''
   const { name, role } = user
-  return `${name}, ${getAnArticle(role)} ${role} from Earth`
+  const article = getAnArticle(role).toLowerCase()
+  return `${name}, ${article} ${role} from Earth`
 }
 
 const getAnArticle = (word: string): string => {
-  return /^[aieou]/i.test(word) ? 'an' : 'a'
+  return /^[aieou]/i.test(word) ? 'An' : 'A'
 }

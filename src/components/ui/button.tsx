@@ -18,6 +18,6 @@ const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
   >
     {children}
   </ChakraButton>
-)}
+  )}
 
 export default Button
