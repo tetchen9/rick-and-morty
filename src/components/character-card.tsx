@@ -15,13 +15,24 @@ export function CharacterCard({ char }: { char: Character }) {
 
   return (
     <Box
+      as="button"
       maxW={'26rem'}
+      height="100%"
       w={'full'}
       bg={useColorModeValue('white', 'gray.800')}
       boxShadow={'sm'}
       rounded={'lg'}
       p={6}
-      textAlign={'center'}>
+      textAlign={'center'}
+      cursor="pointer"
+      _hover={{ bg: useColorModeValue('gray.100', 'gray.700')}}
+      _focusVisible={{
+        outline: '2px solid',
+        outlineColor: useColorModeValue('gray.400', 'gray.300'), // adjust color as needed
+        outlineOffset: '2px'
+      }}
+      aria-label={`Open details for ${name}`}
+    >
       <Image
         src={image}
         boxSize={{ base: '8em', md: '10em', lg: '12em' }}
@@ -33,7 +44,8 @@ export function CharacterCard({ char }: { char: Character }) {
       <Text 
         fontWeight={600} 
         fontSize="1.2em" 
-        mt={3}>
+        mt={3}
+      >
         {name}
       </Text>
       <Text

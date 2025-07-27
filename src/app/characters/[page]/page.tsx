@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import client from 'lib/apollo-client'
 import { useParams } from 'next/navigation'
-import { ListItem, Skeleton } from '@chakra-ui/react'
+import { ListItem, Skeleton, Text, Box } from '@chakra-ui/react'
 import { CharacterCard } from 'components/character-card'
+import { CharacterModal } from 'components/character-modal'
 import { CharacterList } from 'components/character-list'
 import { GET_CHARACTERS } from 'queries/characters'
 import AppHeading from 'components/app-heading'
@@ -17,7 +18,8 @@ import UserText from 'components/user-text'
 const CharactersPage = () => {
   const params = useParams()
   const page = Number(params.page) || 1
-  const [currentPage, setCurrentPage] = useState(page)
+  const [currentPage, setCurrentPage] = useState<number>(page)
+  const [selectedChar, setSelectedChar] = useState<Character | null>(null)
 
   const { loading, error, data } = useQuery(GET_CHARACTERS, {
     variables: { page: currentPage },
@@ -30,7 +32,11 @@ const CharactersPage = () => {
 
   let list
 
-  if (error) return <main>Error: {error.message}</main>
+  if (error) {
+    return <Box textAlign="center" mt={10}>
+      <Text>Error: {error.message}</Text>
+    </Box>
+  }
 
   if (loading) {
     list = Array.from({ length: 8 }).map((_, i) => (
@@ -43,9 +49,11 @@ const CharactersPage = () => {
     ))
   }
   else {
-    console.log(data.characters)
     list = data.characters.results.map((char: Character) => (
-      <ListItem key={char.id} >
+      <ListItem 
+        key={char.id} 
+        onClick={() => setSelectedChar(char)}
+      >
         <CharacterCard char={char} />
       </ListItem>
     ))
@@ -64,6 +72,10 @@ const CharactersPage = () => {
         count={data.characters.info.count} 
         pageSize={20}
       /> }
+      <CharacterModal 
+        selectedChar={selectedChar} 
+        onClose={() => setSelectedChar(null)} 
+      />
     </main>
   )
 }

@@ -81,5 +81,15 @@ beforeAll(() => {
         removeEventListener: vi.fn(),
         dispatchEvent: vi.fn(),
       })),
-    });
-  });
+    })
+
+    Object.defineProperty(window, 'localStorage', {
+      value: {
+        getItem: () => null,
+        setItem: () => {},
+        removeItem: () => {},
+        clear: () => {},
+      },
+      writable: true,
+    })
+  })

@@ -18,3 +18,22 @@ export const GET_CHARACTERS = gql`
         }
     }
 `
+
+export const GET_CHARACTER_DETAILS_BY_ID = gql`
+    query GetCharacterDetails($id: ID!) {
+        character(id: $id) {
+            id
+            status
+            gender
+            location {
+                name
+            }
+            episode {
+                id
+                name
+                episode
+            }
+            type
+        }
+    }
+`

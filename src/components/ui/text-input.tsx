@@ -15,6 +15,11 @@ const TextInput: React.FC<InputProps> = (props) => {
         bg: useColorModeValue('gray.200', 'gray.700'),
         outline: 'none',
       }}
+      _focusVisible={{
+        outline: '2px solid',
+        outlineColor: useColorModeValue('gray.400', 'gray.300'),
+        outlineOffset: '2px'
+      }}
       _placeholder={{ color: 'gray.400' }}
       {...props}
     />

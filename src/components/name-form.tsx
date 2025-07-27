@@ -7,6 +7,7 @@ import { useUser } from 'context/user-context'
 import TextInput from './ui/text-input'
 import Button from './ui/button'
 import { useColorModeValue } from './ui/color-mode'
+import { sanitize } from 'app/utils/input-utils'
 
 export default function NameForm() {
   const router = useRouter()
@@ -52,14 +53,14 @@ export default function NameForm() {
             placeholder={'Alice'}
             value={name}
             onChange={e => {
-              setName(e.target.value)
+              setName(sanitize(e.target.value))
               if (error) setError('')
             }} />
           <TextInput
             placeholder={'Engineer'}
             value={role}
             onChange={e => {
-              setRole(e.target.value)
+              setRole(sanitize(e.target.value))
               if (error) setError('')
             }} />
           {error && (

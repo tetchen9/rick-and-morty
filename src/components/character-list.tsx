@@ -15,7 +15,8 @@ export function CharacterList({ children }: { children: ReactNode }) {
       }}
       gap={4}
       p={0}
-      m={{ base: 4, md: 6, lg: 'auto' }}
+      mx={{ base: 4, md: 6, lg: 'auto' }}
+      my={{ base: 4, md: 6, lg: 8 }}
       maxWidth="72rem"
     >
       {children}

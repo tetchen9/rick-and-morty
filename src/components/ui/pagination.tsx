@@ -13,7 +13,6 @@ interface PaginationProps {
 
 const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(page)
-  console.log('Pagination component rendered with page:', currentPage, 'count:', count, 'page size:',  pageSize)
   return (
     <ChakraPagination.Root
       count={Math.ceil(count / pageSize)} // total pages
@@ -26,6 +25,7 @@ const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
         setPage(e.page)
         setCurrentPage(e.page)
       }}
+      role="group"
     >
       <Center width="full">
         <ButtonGroup variant="ghost" size="sm" >
