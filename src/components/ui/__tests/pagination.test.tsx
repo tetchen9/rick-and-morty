@@ -21,8 +21,5 @@ describe('Pagination', () => {
     const buttons = getAllByRole('button')
     expect(buttons.length).toBe(5)
   })
-
-  
-
-  
 })
+
