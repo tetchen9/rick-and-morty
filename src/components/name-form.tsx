@@ -1,18 +1,23 @@
 'use client'
 
+import { ReactElement, useState } from 'react'
 import { Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { useUser } from 'context/user-context'
-import TextInput from './ui/text-input'
-import Button from './ui/button'
-import { useColorModeValue } from './ui/color-mode'
+import TextInput from 'components/ui/text-input'
+import Button from 'components/ui/button'
+import { useColorModeValue } from 'components/ui/color-mode'
 import { sanitize } from 'app/utils/input-utils'
+import { UserInfo } from 'types/user-info'
 
-export default function NameForm() {
+type NameFormProps = {
+  user?: UserInfo
+}
+
+const NameForm = ({ user }: NameFormProps): ReactElement => {
   const router = useRouter()
-  const [name, setName] = useState('')
-  const [role, setRole] = useState('')
+  const [name, setName] = useState(user?.name || '')
+  const [role, setRole] = useState(user?.role || '')
   const [error, setError] = useState('')
   const { setUser } = useUser()
   const [loading, setLoading] = useState(false)
@@ -68,7 +73,7 @@ export default function NameForm() {
               {error}
             </Text>
           )}
-          <Button loading={loading}>
+          <Button loading={loading} type='submit'>
             Submit
           </Button>
         </Stack>
@@ -77,3 +82,6 @@ export default function NameForm() {
 
   )
 }
+
+
+export default NameForm

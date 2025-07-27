@@ -1,9 +1,8 @@
-'use client'
+import { Button as ChakraButton } from '@chakra-ui/react'
 
-import { Button as ChakraButton, ButtonProps as ChakraButtonProps } from '@chakra-ui/react'
-
-type ButtonProps = ChakraButtonProps & {
-  children: React.ReactNode
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    children: React.ReactNode
+    loading?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({ children, type = 'button', loading, ...props }) => {

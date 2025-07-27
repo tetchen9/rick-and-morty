@@ -37,7 +37,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
       <Image
         src={image}
         boxSize={{ base: '15em', lg: '18em' }}
-        borderRadius="sm"
+        borderRadius="lg"
         fit="cover"
         alt={name}
         mx="auto"
@@ -63,7 +63,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
       </>)}
       {loading && (<>
         <Stack flex="1">
-          <Skeleton mb={4} height="5" width="50%"/>
+          <Skeleton mb={4} mt={2} height="5" width="50%"/>
           <Skeleton height="5" width="60%" />
           <Skeleton height="5" width="70%" />
           <Skeleton height="5" width="40%" />
