@@ -17,6 +17,5 @@ export type CharacterDetails = {
   gender: string
   location: { name: string }
   episode: Array<Episode>
-  created: string
   type: string
 }

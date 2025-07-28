@@ -1,58 +1,43 @@
+import { render } from 'test-utils/rendering'
+import userEvent from '@testing-library/user-event'
 import TextInput from '../text-input'
-import { render, within, fireEvent } from '@testing-library/react'
-import { Provider } from 'components/ui/provider'
 
 describe('TextInput', () => {
-  it('renders without crashing', () => {
-    const { container } = render(
-      <Provider>
-        <TextInput/>
-      </Provider>
-    )
-    const { getByRole } = within(container)
-    const btn = getByRole('textbox')
-    expect(btn).toBeInTheDocument()
+  it('renders with placeholder', () => {
+    const { getByPlaceholderText } = render(<TextInput placeholder="Enter name" />)
+    expect(getByPlaceholderText('Enter name')).toBeInTheDocument()
   })
 
-  it('accepts and displays a placeholder', () => {
-    const placeholder = 'Enter text'
-    const { getByPlaceholderText } = render(
-      <Provider>
-        <TextInput placeholder={placeholder} />
-      </Provider>
-    )
-    expect(getByPlaceholderText(placeholder)).toBeInTheDocument()
-  })
-
-  it('accepts a value prop', () => {
-    const value = 'Monica Belucci'
-    const { getByDisplayValue } = render(
-      <Provider>
-        <TextInput value={value} readOnly />
-      </Provider>
-    )
-    expect(getByDisplayValue(value)).toBeInTheDocument()
-  })
-
-  it('calls onChange when input value changes', () => {
+  it('handles value changes', async () => {
+    const user = userEvent.setup()
     const handleChange = vi.fn()
-    const { getByRole } = render(
-      <Provider>
-        <TextInput onChange={handleChange} />
-      </Provider>
+    const { getByPlaceholderText } = render(
+      <TextInput placeholder="Enter name" onChange={handleChange} />
     )
-    const input = getByRole('textbox') as HTMLInputElement
-    input.focus()
-    fireEvent.change(input, { target: { value: 'Morty' } })
+    
+    const input = getByPlaceholderText('Enter name')
+    await user.type(input, 'John')
     expect(handleChange).toHaveBeenCalled()
   })
 
-  it('is disabled when disabled prop is set', () => {
-    const { getByRole } = render(
-      <Provider>
-        <TextInput disabled />
-      </Provider>
+  it('can be disabled', () => {
+    const { getByPlaceholderText } = render(
+      <TextInput placeholder="Enter name" disabled />
     )
-    expect(getByRole('textbox')).toBeDisabled()
+    expect(getByPlaceholderText('Enter name')).toBeDisabled()
+  })
+
+  it('can have a default value', () => {
+    const { getByDisplayValue } = render(
+      <TextInput placeholder="Enter name" defaultValue="John" />
+    )
+    expect(getByDisplayValue('John')).toBeInTheDocument()
+  })
+
+  it('can be controlled', () => {
+    const { getByDisplayValue } = render(
+      <TextInput placeholder="Enter name" value="John" onChange={() => {}} />
+    )
+    expect(getByDisplayValue('John')).toBeInTheDocument()
   })
 })

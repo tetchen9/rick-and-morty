@@ -1,4 +1,4 @@
-import { Text,  HStack} from '@chakra-ui/react'
+import { Text, Stack} from '@chakra-ui/react'
 import { useColorModeValue } from './ui/color-mode'
 
 export type InfoLineProps = {
@@ -8,9 +8,14 @@ export type InfoLineProps = {
 
 export const InfoLine = ({ value, title }: InfoLineProps) => {
   return (
-    <HStack fontSize="md">
+    <Stack 
+      direction={['column', 'row']}
+      fontSize="md"
+      mb={[2, 0]}
+      gap={[0, 1]}
+    >
       <Text as={'span'} fontWeight="medium">
-        {title}:
+        {`${title}:`}
       </Text>
       <Text 
         as={'span'} 
@@ -18,6 +23,6 @@ export const InfoLine = ({ value, title }: InfoLineProps) => {
       >
         {value}
       </Text>
-    </HStack>
+    </Stack>
   )
 }

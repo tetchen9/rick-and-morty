@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useQuery } from '@apollo/client'
 import client from 'lib/apollo-client'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { ListItem, Skeleton, Text, Box } from '@chakra-ui/react'
 import { CharacterCard } from 'components/character-card'
 import { CharacterModal } from 'components/character-modal'
@@ -14,12 +14,18 @@ import type { Character } from 'types/character'
 import withAuthGuard from 'context/with-user-guard'
 import Pagination from 'components/ui/pagination'
 import UserText from 'components/user-text'
+import { HomeLink } from 'components/ui/home-link'
 
 const CharactersPage = () => {
   const params = useParams()
+  const router = useRouter()
   const page = Number(params.page) || 1
   const [currentPage, setCurrentPage] = useState<number>(page)
   const [selectedChar, setSelectedChar] = useState<Character | null>(null)
+
+  useEffect(() => {
+    setCurrentPage(page)
+  }, [page])
 
   const { loading, error, data } = useQuery(GET_CHARACTERS, {
     variables: { page: currentPage },
@@ -28,6 +34,7 @@ const CharactersPage = () => {
 
   const setPage = (newPage: number) => {
     setCurrentPage(newPage)
+    router.push(`/characters/${newPage}`)
   }
 
   let list
@@ -66,16 +73,24 @@ const CharactersPage = () => {
       <CharacterList>
         {list}
       </CharacterList>
-      {!loading && <Pagination 
-        page={currentPage} 
-        setPage={setPage} 
-        count={data.characters.info.count} 
-        pageSize={20}
-      /> }
-      <CharacterModal 
-        selectedChar={selectedChar} 
-        onClose={() => setSelectedChar(null)} 
-      />
+      {!loading && !!data.characters.info.count && (<>
+        <Pagination 
+          page={currentPage} 
+          setPage={setPage} 
+          count={data.characters.info.count} 
+          pageSize={20}
+        /> 
+        <CharacterModal 
+          selectedChar={selectedChar} 
+          onClose={() => setSelectedChar(null)} 
+        />
+      </>)}
+      {!loading && data.characters.info.count === null && (
+        <Box p={6}>
+          Page {page} is out of reach, try to go to
+          <HomeLink>first page</HomeLink>
+        </Box>
+      )}
     </main>
   )
 }

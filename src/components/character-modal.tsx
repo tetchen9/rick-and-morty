@@ -28,8 +28,8 @@ export function CharacterModal({ selectedChar, onClose }: CharacterModalProps) {
       motionPreset="slide-in-bottom"
       open={open}
       onEscapeKeyDown={(e) => {
-        e.preventDefault() // optional: prevent default if needed
-        onClose()          // manually call onClose
+        e.preventDefault() 
+        onClose()         
       }}
       lazyMount
     >

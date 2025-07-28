@@ -19,7 +19,7 @@ export default function UserText(): JSX.Element {
       flexDirection="row"
       gap={1}
       alignItems="center"
-      mr={{ base: 4, md: 6, lg: 8 }}
+      mr={{ base: 6, lg: 8 }}
       marginLeft="auto"
       width="fit-content"
     >

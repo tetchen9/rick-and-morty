@@ -23,6 +23,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
     status,
     location: { name: locationName } = {},
     episode = [],
+    gender,
     type
   } = charDetails || {}
 
@@ -30,7 +31,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
     <Box
       maxW={'40rem'}
       w={'full'}
-      p={6}
+      p={[2, 6, 6]}
       pt={0}
       textStyle="md">
 
@@ -55,7 +56,8 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
         {!!locationName && (
           <InfoLine title="Last seen on" value={locationName} />
         )}
-        <InfoLine title="Status" value={status} />
+        <InfoLine title="Dead or alive" value={status} />
+        <InfoLine title="Gender" value={gender} />
         <Heading as="h4" my={2}>
         Appeared in episodes:
         </Heading>
@@ -63,12 +65,13 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
       </>)}
       {loading && (<>
         <Stack flex="1">
-          <Skeleton mb={4} mt={2} height="5" width="50%"/>
-          <Skeleton height="5" width="60%" />
-          <Skeleton height="5" width="70%" />
-          <Skeleton height="5" width="40%" />
-          <Skeleton my={2} height="5" width="70%" />
-          <Skeleton height="5" width="70%" />
+          <Skeleton aria-label="skeleton" mb={4} mt={2} height="5" width="50%"/>
+          <Skeleton aria-label="skeleton" height="5" width="60%" />
+          <Skeleton aria-label="skeleton" height="5" width="70%" />
+          <Skeleton aria-label="skeleton" height="5" width="40%" />
+          <Skeleton aria-label="skeleton" height="5" width="40%" />
+          <Skeleton aria-label="skeleton" my={2} height="5" width="70%" />
+          <Skeleton aria-label="skeleton" height="5" width="70%" />
         </Stack>
       </>)}
     </Box>
