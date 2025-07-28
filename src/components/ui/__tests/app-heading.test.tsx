@@ -1,5 +1,5 @@
 import { render } from 'test-utils/rendering'
-import AppHeading from './app-heading'
+import AppHeading from 'components/ui/app-heading'
 
 describe('AppHeading', () => {
   it('renders the title', () => {

@@ -1,6 +1,6 @@
 import { within } from '@testing-library/react'
 import { render } from 'test-utils/rendering'
-import { CharacterInfoCard } from 'components/character-info-card'
+import { CharacterInfoCard } from 'app/characters/[page]/_components/character-info-card'
 import type { CharacterDetails, Character } from 'types/character'
 
 const baseChar: Character = {

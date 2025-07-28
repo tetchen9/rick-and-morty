@@ -1,5 +1,5 @@
 import { Text, Stack} from '@chakra-ui/react'
-import { useColorModeValue } from './ui/color-mode'
+import { useColorModeValue } from '../../../../components/ui/color-mode'
 
 export type InfoLineProps = {
   value?: string

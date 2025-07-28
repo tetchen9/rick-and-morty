@@ -1,7 +1,7 @@
 'use client'
 
 import { Heading } from '@chakra-ui/react'
-import { useColorModeValue } from './ui/color-mode'
+import { useColorModeValue } from './color-mode'
 
 type AppHeadingProps = {
   title: string

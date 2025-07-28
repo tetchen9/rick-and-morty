@@ -1,6 +1,6 @@
 import { render } from 'test-utils/rendering'
 import userEvent from '@testing-library/user-event'
-import TextInput from '../text-input'
+import TextInput from 'components/ui/text-input'
 
 describe('TextInput', () => {
   it('renders with placeholder', () => {

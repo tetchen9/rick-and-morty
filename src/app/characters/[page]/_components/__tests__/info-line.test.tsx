@@ -1,5 +1,5 @@
 import { render } from 'test-utils/rendering'
-import { InfoLine } from 'components/info-line'
+import { InfoLine } from 'app/characters/[page]/_components/info-line'
 
 describe('InfoLine', () => {
   it('renders title and value', () => {

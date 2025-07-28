@@ -1,6 +1,6 @@
 import { render } from 'test-utils/rendering'
 import userEvent from '@testing-library/user-event'
-import Button from '../button'
+import Button from 'components/ui/button'
 
 describe('Button', () => {
   it('renders with children', () => {

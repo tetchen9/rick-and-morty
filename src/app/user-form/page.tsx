@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 import NameForm from 'components/name-form'
-import AppHeading from 'components/app-heading'
+import AppHeading from 'components/ui/app-heading'
 import { useUser } from 'context/user-context'
 import withAuthGuard from 'context/with-user-guard'
 

@@ -1,7 +1,7 @@
 import { within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { render } from 'test-utils/rendering'
-import Pagination from '../pagination'
+import Pagination from 'components/ui/pagination'
 
 describe('Pagination', () => {
   const defaultProps = {

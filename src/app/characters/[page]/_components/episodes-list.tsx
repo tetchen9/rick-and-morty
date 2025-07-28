@@ -1,6 +1,6 @@
 import type { Episode } from 'types/character'
 import { List, ListItem, Text } from '@chakra-ui/react'
-import { useColorModeValue } from './ui/color-mode'
+import { useColorModeValue } from '../../../../components/ui/color-mode'
 
 type EpisodesListProps = {
     episodes: Episode[]
