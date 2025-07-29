@@ -57,13 +57,17 @@ const NameForm = ({ user }: NameFormProps): ReactElement => {
           <TextInput
             placeholder={'Alice'}
             value={name}
+            aria-label='Username'
             onChange={e => {
               setName(sanitize(e.target.value))
               if (error) setError('')
-            }} />
+            }} 
+            autoFocus
+          />
           <TextInput
             placeholder={'Engineer'}
             value={role}
+            aria-label='Job title'
             onChange={e => {
               setRole(sanitize(e.target.value))
               if (error) setError('')

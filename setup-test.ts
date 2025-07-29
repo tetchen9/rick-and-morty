@@ -67,6 +67,37 @@ Object.defineProperty(window, "navigator", {
 // Override globalThis
 Object.assign(global, { window, document: window.document })
 
+// mock sessionStorage and localStorage for all tests
+function mockStorage(target: any) {
+  Object.defineProperty(target, 'sessionStorage', {
+    configurable: true,
+    value: {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      clear: vi.fn(),
+      length: 0,
+      key: vi.fn(),
+    },
+  });
+  Object.defineProperty(target, 'localStorage', {
+    configurable: true,
+    value: {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      clear: vi.fn(),
+      length: 0,
+      key: vi.fn(),
+    },
+  });
+}
+
+mockStorage(globalThis);
+if (typeof window !== 'undefined') {
+  mockStorage(window);
+}
+
 
 beforeAll(() => {
     Object.defineProperty(window, 'matchMedia', {

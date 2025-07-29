@@ -1,7 +1,7 @@
 'use client'
 
 import { Box, Image, Text } from '@chakra-ui/react'
-import { useColorModeValue } from '../../../../components/ui/color-mode'
+import { useColorModeValue } from 'components/ui/color-mode'
 import type { Character } from 'types/character'
 import { getDescription } from 'app/utils/character-utils'
 
@@ -11,7 +11,7 @@ export function CharacterCard({ char }: { char: Character }) {
     image, 
     origin: { name: originName }, 
     species 
-  } = char
+  } = char || {}
 
   return (
     <Box

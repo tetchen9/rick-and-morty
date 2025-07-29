@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_VERSION: packageJson.version,
   },
+  async redirects() {
+    return [
+      {
+        source: '/characters', 
+        destination: '/characters/1', 
+        permanent: true,
+      },
+    ];
+  },
 }
 
 export default nextConfig

@@ -7,11 +7,11 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: './setup-test.ts',
+    setupFiles: ['./setup-test.ts'],
     css: true,
     environmentOptions: {
       jsdom: {
-        resources: 'usable',
+        url: 'http://localhost/', // set a non-opaque origin
       },
     },
   },

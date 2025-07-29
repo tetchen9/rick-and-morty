@@ -52,7 +52,9 @@ const CharactersPage = () => {
           />
           <CharacterModal 
             selectedChar={selectedChar} 
-            onClose={() => setSelectedChar(null)} 
+            onClose={() => {
+              setSelectedChar(null)
+            }}
           />
         </>
       )}
