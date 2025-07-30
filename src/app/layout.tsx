@@ -15,6 +15,7 @@ export default function RootLayout({
         <ColorModeScript initialColorMode="system"/>
       </head>
       <body>
+        <title>Rick and Morty</title>
         <UserProvider>
           <Provider>
             <Flex minH="100vh" flexDirection="column">

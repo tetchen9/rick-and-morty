@@ -25,7 +25,8 @@ const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
         setPage(e.page)
         setCurrentPage(e.page)
       }}
-      role="group"
+      role="navigation"
+      aria-label="pagination"
     >
       <Center width="full">
         <ButtonGroup variant="ghost" size="sm" >

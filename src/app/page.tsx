@@ -30,10 +30,12 @@ function HomeContent() {
   const title = isEditMode ? 'Update Your Details' : 'Rick and Morty'
 
   return (
-    <Box as="main" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-      <AppHeading title={title} />
-      <NameForm />
-    </Box>
+    <>
+      <Box as="main" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <AppHeading title={title} />
+        <NameForm />
+      </Box>
+    </>
   )
 }
 

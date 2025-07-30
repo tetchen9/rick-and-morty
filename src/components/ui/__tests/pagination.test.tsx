@@ -12,18 +12,20 @@ describe('Pagination', () => {
   }
 
   it('renders correct number of page buttons', () => {
-    const { container } = render(<Pagination {...defaultProps} />)
-    const { getAllByRole } = within(container)
-    const buttons = getAllByRole('button')
     const expectedButtons = [ '<', 1, 2, 3, 4, 5, 42, '>']
+    const { container } = render(<Pagination {...defaultProps} />)
+    const { getAllByRole, getByRole } = within(container)
+    
+    expect(getByRole('navigation', { name: 'pagination' })).toBeInTheDocument()
+    const buttons = getAllByRole('button')
     expect(buttons.length).toBe(expectedButtons.length)
   })
 
   it('renders correct page numbers', () => {
+    const expectedNumbers = [1, 2, 3, 4, 5, 42]
     const { container } = render(<Pagination {...defaultProps} />)
     const { getByText } = within(container)
     
-    const expectedNumbers = [1, 2, 3, 4, 5, 42]
     expectedNumbers.map(i => {
       expect(getByText(i)).toBeInTheDocument()
     })
@@ -46,8 +48,7 @@ describe('Pagination', () => {
     const { container } = render(<Pagination {...defaultProps} setPage={setPage} />)
     const { getAllByRole } = within(container)
     const buttons = getAllByRole('button')
-    
-    // Find the next button (last button)
+ 
     const nextButton = buttons[buttons.length - 1]
     await user.click(nextButton)
     expect(setPage).toHaveBeenCalledWith(2)

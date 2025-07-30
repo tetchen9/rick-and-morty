@@ -43,7 +43,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
         alt={name}
         mx="auto"
       />
-      <Heading as="h4" mb={0} mt={8}>
+      <Heading as="h2" mb={0} mt={8} textStyle="lg">
         {name}
       </Heading>
       {!!charDetails && (<>
@@ -58,7 +58,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
         )}
         <InfoLine title="Dead or alive" value={status} />
         <InfoLine title="Gender" value={gender} />
-        <Heading as="h4" my={2}>
+        <Heading as="h3" my={2} textStyle="md">
         Appeared in episodes:
         </Heading>
         <EpisodesList episodes={episode} />

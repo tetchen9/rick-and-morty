@@ -114,7 +114,7 @@ describe('CharactersPage', () => {
       </UserProvider>
     )
     const { getByRole } = within(container) 
-    const navigation = getByRole('group', { name: 'pagination' })
+    const navigation = getByRole('navigation', { name: 'pagination' })
     const page1Button = getByRole('button', { name: 'page 1' })
     const page2Button = getByRole('button', { name: 'next page' })
 
