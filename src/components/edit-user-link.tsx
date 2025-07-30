@@ -5,8 +5,13 @@ import { JSX } from 'react'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { FaUserPen } from 'react-icons/fa6'
 import NextLink from 'next/link'
+import { usePathname, useSearchParams } from 'next/navigation'
 
 export default function EditUserLink(): JSX.Element {
+  const pathname = usePathname()
+  const search = useSearchParams()?.toString() ?? ''
+  const currentPath = `${pathname}${search ? `?${search}` : ''}`
+  
   return (
     <Box asChild 
       p={2}
@@ -20,9 +25,7 @@ export default function EditUserLink(): JSX.Element {
       }}
       aria-label="Edit user data"
     >
-      <NextLink 
-        href={{pathname: '/user-form'}}
-      >
+      <NextLink href={{pathname: '/', query: { edit: 'true', returnTo: currentPath }}}>
         <Icon size="md" color="gray.500" aria-label="Edit user data">
           <FaUserPen />
         </Icon>

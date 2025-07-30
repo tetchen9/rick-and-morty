@@ -8,33 +8,45 @@ import TextInput from 'components/ui/text-input'
 import Button from 'components/ui/button'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { sanitize } from 'app/utils/input-utils'
-import { UserInfo } from 'types/user-info'
 
-type NameFormProps = {
-  user?: UserInfo
-}
-
-const NameForm = ({ user }: NameFormProps): ReactElement => {
+const NameForm = (): ReactElement => {
   const router = useRouter()
+  const { user, setUser } = useUser()
   const [name, setName] = useState(user?.name || '')
   const [role, setRole] = useState(user?.role || '')
   const [error, setError] = useState('')
-  const { setUser } = useUser()
   const [loading, setLoading] = useState(false)
+
+  const validateForm = (): string | null => {
+    if (!name.trim()) {
+      return 'Please enter your name.'
+    }
+    if (!role.trim()) {
+      return 'Please enter your job title.'
+    }
+    return null
+  }
+
+  const handleNavigation = () => {
+    let returnTo: string | null = null
+    if (typeof window !== 'undefined') {
+      returnTo = sessionStorage.getItem('returnTo')
+      if (returnTo) sessionStorage.removeItem('returnTo')
+    }
+    router.push(returnTo || '/characters/1')
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name.trim()) {
-      setError('Please enter your name.')
-      return
-    }
-    if (!role.trim()) {
-      setError('Please enter your job title.')
+    const validationError = validateForm()
+    if (validationError) {
+      setError(validationError)
       return
     }
     setError('')
     setUser({ name: name.trim(), role: role.trim() })
-    router.push('/characters/1')
+    
+    handleNavigation()
     setLoading(!loading)
   }
 

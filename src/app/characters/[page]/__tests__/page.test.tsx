@@ -15,6 +15,8 @@ vi.mock('next/navigation', () => ({
   useRouter: vi.fn(() => ({
     push: vi.fn(),
   })),
+  usePathname: vi.fn(() => '/characters/1'),
+  useSearchParams: vi.fn(() => new URLSearchParams()),
 }))
 
 // Mock apollo-client
