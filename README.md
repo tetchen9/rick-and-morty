@@ -1,13 +1,25 @@
 # Rick and Morty Characters App
 
-This project lets a user browse a list of characters appearing in Rick and Morty series, the data comes from an open Rick and Morty GraphQL API (https://rickandmortyapi.com/graphql)
+This project lets a user browse a list of characters appearing in Rick and Morty series, the data comes from an open Rick and Morty GraphQL API (https://rickandmortyapi.com/graphql).
+
 Built with TypeScript and Next.js. Uses Chakra UI as a components library.
 
 ## Features
 
 ### Core Functionality
 
-The app allows to browse through all Rick and Morty characters using pagination. Each character has detailed information, including location, species, origin and a list of episodes where he appeared.
+The app allows to browse through all Rick and Morty characters using pagination. 
+
+&nbsp;
+<img width="1198" height="605" alt="image" margin="20px" src="https://github.com/user-attachments/assets/d7413398-94b6-405c-9322-aa5410d86ed1" />
+&nbsp;
+
+Each character has detailed information, including location, species, origin and a list of episodes where he appeared.
+
+&nbsp;
+<img width="1198" height="auto" alt="image" margin="20px" src="https://github.com/user-attachments/assets/270c250b-4de2-4818-b330-6f9ede3bc42f" />
+&nbsp;
+
 The user of the app can create and edit their profile with name and job title.
 
 ### User Experience
@@ -94,7 +106,7 @@ src/
 └── types/                # TypeScript type definitions
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
