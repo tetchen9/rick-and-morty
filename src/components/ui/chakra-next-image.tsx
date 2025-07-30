@@ -7,6 +7,8 @@ interface ChakraNextImageProps extends Omit<ChakraBoxProps, 'src' | 'alt'> {
 }
 
 const ChakraNextImage = ({ src, alt, ...chakraProps }: ChakraNextImageProps) => {
+  const { borderRadius } = chakraProps
+  const imageBorderRadius = borderRadius === 'full' ? '50%' : borderRadius === 'lg' ? '10px' : undefined
   
   return (
     <Box position="relative" {...chakraProps}>
@@ -17,7 +19,7 @@ const ChakraNextImage = ({ src, alt, ...chakraProps }: ChakraNextImageProps) => 
         width={300}
         style={{ 
           objectFit: 'cover',
-          borderRadius: chakraProps.borderRadius ? '50%' : undefined,
+          borderRadius: imageBorderRadius
         }}
       />
     </Box>
