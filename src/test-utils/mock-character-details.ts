@@ -1,5 +1,6 @@
 export const mockCharacterDetails = {
   character: {
+    id: '1',
     status: 'Alive',
     gender: 'Male',
     location: { name: 'Earth (Replacement Dimension)' },

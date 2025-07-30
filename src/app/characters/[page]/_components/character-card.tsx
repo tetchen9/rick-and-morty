@@ -1,9 +1,10 @@
 'use client'
 
-import { Box, Image, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { useColorModeValue } from 'components/ui/color-mode'
 import type { Character } from 'types/character'
 import { getDescription } from 'app/utils/character-utils'
+import ChakraNextImage from 'components/ui/chakra-next-image'
 
 export function CharacterCard({ char }: { char: Character }) {
   const { 
@@ -33,12 +34,11 @@ export function CharacterCard({ char }: { char: Character }) {
       }}
       aria-label={`Open details for ${name}`}
     >
-      <Image
+      <ChakraNextImage 
         src={image}
+        alt={name}
         boxSize={{ base: '8em', md: '10em', lg: '12em' }}
         borderRadius="full"
-        fit="cover"
-        alt={name}
         mx="auto"
       />
       <Text 

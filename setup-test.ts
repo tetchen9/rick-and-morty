@@ -98,6 +98,16 @@ if (typeof window !== 'undefined') {
   mockStorage(window);
 }
 
+// Mock Next.js Image component
+vi.mock('next/image', () => ({
+  default: function MockImage({ src, alt, fill, ...props }: any) {
+    const { createElement } = require('react')
+    // Filter out Next.js specific props that don't work with regular img
+    const { width, height, quality, priority, ...imgProps } = props
+    return createElement('img', { src, alt, ...imgProps })
+  },
+}))
+
 
 beforeAll(() => {
     Object.defineProperty(window, 'matchMedia', {

@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_VERSION: packageJson.version,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'rickandmortyapi.com',
+      },
+    ],
+  },
   async redirects() {
     return [
       {

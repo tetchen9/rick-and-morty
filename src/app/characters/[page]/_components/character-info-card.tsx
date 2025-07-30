@@ -1,9 +1,10 @@
 'use client'
 
-import { Box, Image, Text, Stack, Skeleton, Heading} from '@chakra-ui/react'
+import { Box, Text, Stack, Skeleton, Heading} from '@chakra-ui/react'
 import type { CharacterDetails, Character } from 'types/character'
 import EpisodesList from './episodes-list'
 import { InfoLine } from './info-line'
+import ChakraNextImage from 'components/ui/chakra-next-image'
 
 export interface CharacterInfoCardProps {
   char: Character
@@ -35,12 +36,11 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
       pt={0}
       textStyle="md">
 
-      <Image
+      <ChakraNextImage 
         src={image}
+        alt={name}
         boxSize={{ base: '15em', lg: '18em' }}
         borderRadius="lg"
-        fit="cover"
-        alt={name}
         mx="auto"
       />
       <Heading as="h2" mb={0} mt={8} textStyle="lg">
