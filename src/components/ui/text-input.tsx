@@ -3,7 +3,12 @@
 import { Input, InputProps } from '@chakra-ui/react'
 import { useColorModeValue } from './color-mode'
 
-const TextInput: React.FC<InputProps> = (props) => {
+/**
+ * TextInput is a component that displays a text input.
+ * @param props - The props of the text input.
+ * @returns A Chakra UI Input component.
+ */
+const TextInput: React.FC<InputProps> = (props: InputProps) => {
   return (
     <Input
       type={'text'}

@@ -4,18 +4,30 @@ import { CharacterCard } from 'app/characters/[page]/_components/character-card'
 import type { Character } from 'types/character'
 
 export type CharacterListProps = {
+  /** Whether the characters are loading. */
   isLoading?: boolean
+  /** The characters to display. */
   characters?: Character[]
+  /** The function to call when a character is selected. */
   onSelect?: (char: Character) => void
 }
 
 const SKELETON_COUNT = 8
 
-export default function CharacterList({
+/**
+ * Displays a list of characters in a grid layout.
+ * A skeleton is displayed while the characters are loading.
+ * The grid layout is responsive and adapts to the screen size.
+ * @param isLoading - Whether the characters are loading.
+ * @param characters - The characters to display.
+ * @param onSelect - The function to call when a character is selected.
+ * @returns A Chakra UI List component with a grid of character cards.
+ */
+const CharacterList = ({
   isLoading = false,
   characters,
   onSelect = () => {},
-}: CharacterListProps) { 
+}: CharacterListProps) => { 
   return (
     <List.Root
       as="ul"
@@ -56,3 +68,4 @@ export default function CharacterList({
     </List.Root>
   )
 }
+export default CharacterList

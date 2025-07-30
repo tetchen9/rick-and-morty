@@ -3,12 +3,21 @@
 import { ReactElement, useState } from 'react'
 import { Stack, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
-import { useUser } from 'context/user-context'
+import { useUser } from 'hooks/use-user'
 import TextInput from 'components/ui/text-input'
 import Button from 'components/ui/button'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { sanitize } from 'app/utils/input-utils'
 
+/**
+ * Displays a form to enter the user's name and job title.
+ * It gets user data from the user context.
+ * If the user data is not there, the fields are empty.
+ * If the user data is there, the fields are filled with the user's name and job title.
+ * After the user submits the form, the user data is saved in the user context.
+ * The user is redirected to the page specified in the returnTo parameter.
+ * @returns a form with two input fields and a button.
+ */
 const NameForm = (): ReactElement => {
   const router = useRouter()
   const { user, setUser } = useUser()

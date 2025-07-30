@@ -5,12 +5,27 @@ import { useState } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
 interface PaginationProps {
+  /** The current page. */
   page: number,
+  /** The total number of items. */
   count: number,
+  /** The number of items per page. */
   pageSize: number,
+  /** The function to set the page number. */
   setPage: (page: number) => void
 }
 
+/**
+ * Displays a pagination component.
+ * It displays the current page, the previous and next buttons,
+ * the total number of pages 
+ * and three pages between the first and last buttons.
+ * @param page - The current page.
+ * @param setPage - The function to set the page number.
+ * @param count - The total number of items.
+ * @param pageSize - The number of items per page.
+ * @returns A Chakra UI Pagination component.
+ */
 const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
   const [currentPage, setCurrentPage] = useState(page)
   return (

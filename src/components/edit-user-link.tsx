@@ -7,6 +7,10 @@ import { FaUserPen } from 'react-icons/fa6'
 import NextLink from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
+/**
+ * EditUserLink is a component that displays a link to the edit user page.
+ * @returns A Chakra UI Box component with a NextLink component inside it.
+ */
 export default function EditUserLink(): JSX.Element {
   const pathname = usePathname()
   const search = useSearchParams()?.toString() ?? ''

@@ -12,7 +12,7 @@ import UserText from 'components/user-text'
 import ErrorMessage from 'components/ui/error-message'
 import Pagination from 'components/ui/pagination'
 import CharacterList from 'app/characters/[page]/_components/character-list'
-import { CharacterModal } from 'app/characters/[page]/_components/character-modal'
+import CharacterModal from 'app/characters/[page]/_components/character-modal'
 import OutOfRangeMessage from './_components/out-of-range-message'
 
 const PAGE_SIZE = 20

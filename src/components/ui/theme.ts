@@ -1,5 +1,9 @@
 import { createSystem, defaultConfig } from '@chakra-ui/react'
 
+/**
+ * The system is the theme of the app, used to style the app.
+ * @returns A Chakra UI System component.
+ */
 export const system = createSystem(defaultConfig, {
   globalCss: {
     'html, body': {
@@ -12,13 +16,5 @@ export const system = createSystem(defaultConfig, {
       boxSizing: 'border-box',
       padding: 0,
       margin: 0,
-    }},
-  theme: {
-    tokens: {
-      fonts: {
-        heading: { value: '\'Figtree\', sans-serif' },
-        body: { value: '\'Figtree\', sans-serif' },
-      },
-    },
-  },
+    }}
 })

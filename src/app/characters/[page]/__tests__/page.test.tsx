@@ -4,8 +4,11 @@ import { UserProvider } from 'context/user-context'
 import { mockCharacters } from 'test-utils/mock-characters'
 
 // Mock useUser to always return a user
-vi.mock('context/user-context', () => ({
+vi.mock('hooks/use-user', () => ({
   useUser: () => ({ user: { name: 'James Joyce', role: 'choreographer' } }),
+}))
+
+vi.mock('context/user-context', () => ({
   UserProvider: ({ children }: { children: React.ReactNode }) => children,
 }))
 

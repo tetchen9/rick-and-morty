@@ -7,6 +7,11 @@ type AppHeadingProps = {
   title: string
 }
 
+/**
+ * AppHeading is a component that displays a heading for the app.
+ * @param title - The title of the heading.
+ * @returns A Chakra UI Heading component.
+ */
 export default function AppHeading({ title }: AppHeadingProps) {
   return (
     <Heading

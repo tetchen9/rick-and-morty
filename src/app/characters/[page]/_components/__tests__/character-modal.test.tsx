@@ -1,10 +1,10 @@
 import { fireEvent, waitFor } from '@testing-library/react'
 import { render } from 'test-utils/rendering'
 import { MockedProvider } from '@apollo/client/testing'
-import { CharacterModal } from '../character-modal'
 import { GET_CHARACTER_DETAILS_BY_ID } from 'queries/characters'
 import { mockCharacters } from 'test-utils/mock-characters'
 import { mockCharacterDetails } from 'test-utils/mock-character-details'
+import CharacterModal from '../character-modal'
 
 const mocks = [
   {

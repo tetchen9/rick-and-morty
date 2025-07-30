@@ -4,10 +4,15 @@ import { Box } from '@chakra-ui/react'
 import { useSearchParams } from 'next/navigation'
 import NameForm from 'components/name-form'
 import AppHeading from 'components/ui/app-heading'
-import { useUser } from 'context/user-context'
 import Loading from 'components/loading'
+import { useUser } from 'hooks/use-user'
 
-function HomeContent() {
+/**
+ * Displays the home page content.
+ * It displays a form to enter the user's name and job title.
+ * @returns A Chakra UI Box component with a AppHeading and a NameForm component inside it.
+ */
+const HomeContent = () => {
   const [mounted, setMounted] = useState(false)
   const { loading } = useUser()
   const searchParams = useSearchParams()
@@ -39,6 +44,11 @@ function HomeContent() {
   )
 }
 
+/**
+ * Displays the home page. 
+ * It uses a suspense fallback to display a loading component.
+ * @returns A Chakra UI Box component with a HomeContent component inside it.
+ */
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   

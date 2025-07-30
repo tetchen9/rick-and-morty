@@ -1,5 +1,10 @@
 import { gql } from '@apollo/client'
 
+/**
+ * Gets the characters from the GraphQL server.
+ * @param page - The page number.
+ * @returns The characters.
+ */
 export const GET_CHARACTERS = gql`
     query GetCharacters($page: Int!) {
         characters(page: $page) {
@@ -19,6 +24,11 @@ export const GET_CHARACTERS = gql`
     }
 `
 
+/**
+ * Gets the character details from the GraphQL server.
+ * @param id - The id of the character.
+ * @returns The character details.
+ */
 export const GET_CHARACTER_DETAILS_BY_ID = gql`
     query GetCharacterDetails($id: ID!) {
         character(id: $id) {

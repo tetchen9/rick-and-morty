@@ -1,7 +1,11 @@
 import { Center, Heading, Stack } from '@chakra-ui/react'
 import { HomeLink } from 'components/ui/home-link'
 
-export default function Custom404() {
+/**
+ * Displays a message and a link to the first page when the page is not found.
+ * @returns A component with a message and a HomeLink component inside it.
+ */
+const Custom404 = () => {
   return (
     <Center minH={['50vh', '100vh']} width="100%" p={6}>
       <Stack>
@@ -14,3 +18,5 @@ export default function Custom404() {
     </Center>
   )
 }
+
+export default Custom404

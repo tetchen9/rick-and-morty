@@ -6,6 +6,13 @@ import type { Character } from 'types/character'
 import { getDescription } from 'app/utils/character-utils'
 import ChakraNextImage from 'components/ui/chakra-next-image'
 
+/**
+ * Displays a character card.
+ * It displays the character's name, image, origin and species.
+ * It also displays a button to open the character details page.
+ * @param char - The character to display.
+ * @returns A Chakra UI Box component with a ChakraNextImage, a Text and a Text component inside it.
+ */
 export function CharacterCard({ char }: { char: Character }) {
   const { 
     name, 

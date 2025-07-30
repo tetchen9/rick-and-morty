@@ -4,6 +4,12 @@ import { Footer } from 'components/ui/footer'
 import { Provider } from 'components/ui/provider'
 import { UserProvider } from 'context/user-context'
 
+/**
+ * RootLayout is the main layout of the app, providing the user context, 
+ * the color mode and the Chakra UI Provider.
+ * @param children - The children of the layout.
+ * @returns A layout with the children and the footer.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

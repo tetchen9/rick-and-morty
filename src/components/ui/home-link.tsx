@@ -8,6 +8,12 @@ interface HomeLinkProps {
 
 const HOME_URL = '/characters/1'
 
+/**
+ * HomeLink is a component that displays a link to the home page.
+ * @param href - The href of the link.
+ * @param children - The children of the link.
+ * @returns A Chakra UI Box component with a NextLink component inside it.
+ */
 export const HomeLink = ({ href = HOME_URL, children = 'home' }: HomeLinkProps) => {
   return (
     <Box asChild textDecoration="underline">

@@ -12,8 +12,11 @@ vi.mock('next/navigation', () => ({
 }))
 
 const mockUseUser = vi.fn()
-vi.mock('context/user-context', () => ({
+vi.mock('hooks/use-user', () => ({
   useUser: (...args: unknown[]) => mockUseUser(...args),
+}))
+
+vi.mock('context/user-context', () => ({
   UserProvider: ({ children }: { children: React.ReactNode }) => children,
 }))
 

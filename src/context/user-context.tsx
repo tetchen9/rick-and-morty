@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useState, useEffect, ReactNode } from 'react'
 import { UserInfo } from 'types/user-info'
 
 interface UserContextType {
@@ -9,10 +9,16 @@ interface UserContextType {
   loading: boolean
 }
 
-const UserContext = createContext<UserContextType | undefined>(undefined)
+export const UserContext = createContext<UserContextType | undefined>(undefined)
 
 const STORAGE_KEY = 'user-info'
 
+/**
+ * UserProvider is a component that provides the user context.
+ * It stores the user data in the localStorage.
+ * @param children - The children of the provider.
+ * @returns A UserContext.Provider component.
+ */
 export function UserProvider({ children }: { children: ReactNode }) {
   const [user, setUserState] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState(true)
@@ -41,8 +47,3 @@ export function UserProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useUser() {
-  const ctx = useContext(UserContext)
-  if (!ctx) throw new Error('useUser must be used within UserProvider')
-  return ctx
-}
