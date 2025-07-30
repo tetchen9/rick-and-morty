@@ -1,12 +1,13 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { Box } from '@chakra-ui/react'
 import { useSearchParams } from 'next/navigation'
 import NameForm from 'components/name-form'
 import AppHeading from 'components/ui/app-heading'
 import { useUser } from 'context/user-context'
+import Loading from 'components/loading'
 
-export default function Home() {
+function HomeContent() {
   const [mounted, setMounted] = useState(false)
   const { loading } = useUser()
   const searchParams = useSearchParams()
@@ -33,6 +34,22 @@ export default function Home() {
       <AppHeading title={title} />
       <NameForm />
     </Box>
+  )
+}
+
+export default function Home() {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  if (!mounted) return null
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <HomeContent />
+    </Suspense>
   )
 }
 
