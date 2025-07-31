@@ -8,7 +8,7 @@ Built with TypeScript and Next.js. Uses Chakra UI as a components library.
 
 ### Core Functionality
 
-The app allows to browse through all Rick and Morty characters using pagination. 
+The app allows to browse through all Rick and Morty characters using pagination.
 
 &nbsp;
 <img width="1198" height="605" alt="image" margin="20px" src="https://github.com/user-attachments/assets/d7413398-94b6-405c-9322-aa5410d86ed1" />
@@ -41,7 +41,7 @@ The app is built with Next.js App Router, uses Apollo Client for efficient data 
 ### Testing and Code quality
 
 Unit tests are written with Vitest and Testing Library (the coverage is unsufficient at the moment, fuller coverage was descoped to meet time boundaries).
-Code linting and style enforcement is done with the help of ESlint. (I would normally use TSlint, but descoped it for this project to meet time constraints)
+Code linting and style enforcement is done with the help of ESlint, with a typescript plugin.
 
 ### Performance Optimizations
 

@@ -8,6 +8,7 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   rules: {
     'semi': ['error', 'never'],
     'quotes': ['error', 'single', { 'avoidEscape': true }],
