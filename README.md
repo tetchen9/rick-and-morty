@@ -123,4 +123,5 @@ src/
 ## Deployment
 
 The project is deployed with Vercel at
-`https://rick-and-morty-levandovska.vercel.app/`
+<a href="https://rick-and-morty-levandovska.vercel.app/">`https://rick-and-morty-levandovska.vercel.app/`</a>
+
