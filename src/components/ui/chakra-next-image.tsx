@@ -1,7 +1,7 @@
 import NextImage from 'next/image'
 import { Box, BoxProps as ChakraBoxProps } from '@chakra-ui/react'
 
-interface ChakraNextImageProps extends Omit<ChakraBoxProps, 'src' | 'alt'> {
+type ChakraNextImageProps = Omit<ChakraBoxProps, 'src' | 'alt'> & {
   src: string
   alt: string
 }
@@ -9,10 +9,10 @@ interface ChakraNextImageProps extends Omit<ChakraBoxProps, 'src' | 'alt'> {
 /**
  * ChakraNextImage is a wrapper around NextImage that allows for 
  * the use of Chakra UI's props.
- * @param src - The source of the image.
- * @param alt - The alt text of the image.
- * @param chakraProps - The props of the Chakra UI Box component.
- * @returns A Chakra UI Box component with a NextImage component inside it.
+ * @param src - the source of the image.
+ * @param alt - the alt text of the image.
+ * @param chakraProps - the props of the Chakra UI Box component.
+ * @returns a Chakra UI Box component with a NextImage component inside it.
  */
 const ChakraNextImage = ({ src, alt, ...chakraProps }: ChakraNextImageProps): React.JSX.Element => {
   const { borderRadius } = chakraProps

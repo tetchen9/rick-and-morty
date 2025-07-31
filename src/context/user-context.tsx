@@ -2,22 +2,28 @@
 import { createContext, useState, useEffect, ReactNode } from 'react'
 import { UserInfo } from 'types/user-info'
 
-interface UserContextType {
+type UserContextType = {
+  /** the user data */
   user: UserInfo | null
+  /** sets the user data */
   setUser: (user: UserInfo) => void
+  /** clears the user data */
   clearUser: () => void
+  /** whether the user data is loading */
   loading: boolean
 }
 
 export const UserContext = createContext<UserContextType | undefined>(undefined)
 
-const STORAGE_KEY = 'user-info'
+export const STORAGE_KEY = 'user-info'
 
 /**
- * UserProvider is a component that provides the user context.
- * It stores the user data in the localStorage.
- * @param children - The children of the provider.
- * @returns A UserContext.Provider component.
+ * The UserProvider is a wrapper component that:
+ * - manages state: uses useState to track user data and loading state
+ * - persists data: automatically saves/loads user data from localStorage
+ * - provides context: wraps child components with the context values
+ * @param children - the children of the provider
+ * @returns a UserContext.Provider component
  */
 export function UserProvider({ children }: { children: ReactNode }): React.JSX.Element {
   const [user, setUserState] = useState<UserInfo | null>(null)
@@ -25,16 +31,31 @@ export function UserProvider({ children }: { children: ReactNode }): React.JSX.E
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
-    console.log('Loading user from localStorage:', stored)
-    if (stored) setUserState(JSON.parse(stored))
+    if (stored !== null && stored !== undefined && stored !== '') {
+      try {
+        setUserState(JSON.parse(stored))
+      } catch (error) {
+        console.error('Failed to parse stored user data:', error)
+        localStorage.removeItem(STORAGE_KEY)
+      }
+    }
     setLoading(false)
   }, [])
 
+  /**
+   * Sets the user data in the localStorage.
+   * @param user - the user data to set
+   */
   const setUser = (user: UserInfo): void => {
     setUserState(user)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
   }
 
+  /**
+   * Clears the user data from the localStorage.
+   * This function is not used in the app, since there's no
+   * logout functionality, but it's here for future reference.
+   */
   const clearUser = (): void => {
     setUserState(null)
     localStorage.removeItem(STORAGE_KEY)

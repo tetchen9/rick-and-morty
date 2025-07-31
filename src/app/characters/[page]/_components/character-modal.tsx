@@ -6,18 +6,18 @@ import type { CharacterDetails, Character } from 'types/character'
 import { useEffect, useRef, useCallback } from 'react'
 import client from 'lib/apollo-client'
 
-interface CharacterModalProps {
-  /** The character to display. */
+type CharacterModalProps = {
+  /** the character to display. */
   selectedChar: Character | null
-  /** The function to call when the modal is closed. */
+  /** the function to call when the modal is closed. */
   onClose: () => void
 }
 
 /**
  * A helper function to add the Apollo client to the options.
  * It is used to avoid the Apollo client being added in the test environment.
- * @param options - The options to add the client to.
- * @returns The options with the client.
+ * @param options - the options to add the client to.
+ * @returns the options with the client.
  */
 function withClient<T extends object>(options: T): T & { client?: typeof client } {
   return process.env.NODE_ENV !== 'test' ? { ...options, client } : options
@@ -29,9 +29,9 @@ function withClient<T extends object>(options: T): T & { client?: typeof client 
  * It receives the additional character details from the GraphQL server.
  * The modal gets closed when the user clicks outside the modal, 
  * presses the escape key or clicks the close button.
- * @param selectedChar - The character to display.
- * @param onClose - The function to call when the modal is closed.
- * @returns A Chakra UI Dialog component with the character details.
+ * @param selectedChar - the character to display.
+ * @param onClose - the function to call when the modal is closed.
+ * @returns a Chakra UI Dialog component with the character details.
  */
 const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps): React.JSX.Element => {
   const modalRef = useRef<HTMLDivElement>(null)
@@ -43,7 +43,7 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps): React.J
     GET_CHARACTER_DETAILS_BY_ID,
     withClient({
       variables: { id },
-      skip: !id,
+      skip: id === undefined,
     })
   )
 

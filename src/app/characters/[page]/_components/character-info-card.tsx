@@ -6,12 +6,12 @@ import EpisodesList from './episodes-list'
 import { InfoLine } from './info-line'
 import ChakraNextImage from 'components/ui/chakra-next-image'
 
-export interface CharacterInfoCardProps {
-  /** The character to display. */
+export type CharacterInfoCardProps = {
+  /** the character to display. */
   char: Character
-  /** The additional character details to display. */
+  /** the additional character details to display. */
   charDetails?: CharacterDetails
-  /** Whether the character details are loading. */
+  /** whether the character details are loading. */
   loading?: boolean
 }
 
@@ -19,10 +19,10 @@ export interface CharacterInfoCardProps {
  * Displays the character details:
  * name, image, origin, species, status, location, gender, type and episodes.
  * A skeleton is displayed while additional character details are loading.
- * @param char - The character to display.
- * @param charDetails - The character details to display.
- * @param loading - Whether the character details are loading.
- * @returns A Chakra UI Box component character details.
+ * @param char - the character to display.
+ * @param charDetails - the character details to display.
+ * @param loading - whether the character details are loading.
+ * @returns a Chakra UI Box component character details.
  */
 export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoCardProps): React.JSX.Element {
   const { 
@@ -58,14 +58,14 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
       <Heading as="h2" mb={0} mt={8} textStyle="lg">
         {name}
       </Heading>
-      {!!charDetails && (<>
+      {charDetails !== undefined && (<>
         <Text mb={4}>
-          {species} {type ? `| ${type}` : ''}
+          {species} {type !== undefined && type.length > 0 ? `| ${type}` : ''}
         </Text>
-        {!!originName && (
+        {originName !== undefined && (
           <InfoLine title="Originally from" value={originName} />
         )}
-        {!!locationName && (
+        {locationName !== undefined && (
           <InfoLine title="Last seen on" value={locationName} />
         )}
         <InfoLine title="Dead or alive" value={status} />
@@ -75,7 +75,7 @@ export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoC
         </Heading>
         <EpisodesList episodes={episode} />
       </>)}
-      {loading && (<>
+      {loading === true && (<>
         <Stack flex="1">
           <Skeleton aria-label="skeleton" mb={4} mt={2} height="5" width="50%"/>
           <Skeleton aria-label="skeleton" height="5" width="60%" />

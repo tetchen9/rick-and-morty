@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { render } from 'test-utils/rendering'
 import { UserProvider } from 'context/user-context'
 import NameForm from '../name-form'
+import { PATHS } from 'consts/paths'
 
 const mockPush = vi.fn()
 vi.mock('next/navigation', () => ({
@@ -59,7 +60,7 @@ describe('NameForm', () => {
     await user.type(getByLabelText(/job title/i), 'choreographer')
     await user.click(getByRole('button', { name: /submit/i }))
 
-    expect(mockPush).toHaveBeenCalledWith('/characters/1')
+    expect(mockPush).toHaveBeenCalledWith(PATHS.CHARACTERS)
   })
 
   it('should show values in the form when a user is set', () => {

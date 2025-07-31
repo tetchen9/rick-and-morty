@@ -58,8 +58,8 @@ const CharacterList = ({
       {!isLoading && characters && (
         <>
           {characters.map((char) => (
-            <ListItem key={char.id} onClick={() => onSelect(char)}>
-              <CharacterCard char={char} />
+            <ListItem key={char.id}>
+              <CharacterCard char={char} onClick={() => onSelect(char)}/>
             </ListItem>
           ))}
         </>

@@ -8,6 +8,7 @@ import TextInput from 'components/ui/text-input'
 import Button from 'components/ui/button'
 import { useColorModeValue } from 'components/ui/color-mode'
 import { sanitize } from 'app/utils/input-utils'
+import { PATHS } from 'consts/paths'
 
 /**
  * Displays a form to enter the user's name and job title.
@@ -21,8 +22,8 @@ import { sanitize } from 'app/utils/input-utils'
 const NameForm = (): ReactElement => {
   const router = useRouter()
   const { user, setUser } = useUser()
-  const [name, setName] = useState(user?.name || '')
-  const [role, setRole] = useState(user?.role || '')
+  const [name, setName] = useState(user?.name ?? '')
+  const [role, setRole] = useState(user?.role ?? '')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -40,15 +41,17 @@ const NameForm = (): ReactElement => {
     let returnTo: string | null = null
     if (typeof window !== 'undefined') {
       returnTo = sessionStorage.getItem('returnTo')
-      if (returnTo) sessionStorage.removeItem('returnTo')
+      if (returnTo !== null && returnTo !== '') {
+        sessionStorage.removeItem('returnTo')
+      }
     }
-    router.push(returnTo || '/characters/1')
+    router.push(returnTo ?? PATHS.CHARACTERS)
   }
 
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault()
     const validationError = validateForm()
-    if (validationError) {
+    if (validationError !== null) {
       setError(validationError)
       return
     }
@@ -81,7 +84,7 @@ const NameForm = (): ReactElement => {
             aria-label='Username'
             onChange={e => {
               setName(sanitize(e.target.value))
-              if (error) setError('')
+              if (error !== '') setError('')
             }} 
             autoFocus
           />
@@ -91,9 +94,9 @@ const NameForm = (): ReactElement => {
             aria-label='Job title'
             onChange={e => {
               setRole(sanitize(e.target.value))
-              if (error) setError('')
+              if (error !== '') setError('')
             }} />
-          {error && (
+          {error !== '' && (
             <Text color="red.400" fontSize="sm" textAlign="center">
               {error}
             </Text>

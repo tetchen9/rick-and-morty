@@ -25,7 +25,7 @@ const HomeContent = (): React.JSX.Element | null => {
   
   // Store returnTo in sessionStorage when in edit mode
   useEffect(() => {
-    if (mounted && isEditMode && returnTo && typeof window !== 'undefined') {
+    if (mounted && isEditMode && returnTo !== null && returnTo !== '' && typeof window !== 'undefined') {
       sessionStorage.setItem('returnTo', returnTo)
     }
   }, [mounted, isEditMode, returnTo])

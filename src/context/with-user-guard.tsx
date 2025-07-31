@@ -4,6 +4,7 @@ import { useEffect, ComponentType } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useUser } from 'hooks/use-user'
 import Loading from 'components/loading'
+import { PATHS } from 'consts/paths'
 
 /**
  * withAuthGuard is a higher-order component that protects routes.
@@ -28,15 +29,15 @@ const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>): Co
           // User exists - check if there's a returnTo path
           if (typeof window !== 'undefined') {
             const returnTo = sessionStorage.getItem('returnTo')
-            if (returnTo) {
+            if (returnTo !== null && returnTo !== '') {
               sessionStorage.removeItem('returnTo')
               router.push(returnTo)
               return
             }
           }
           // No returnTo - redirect to characters page
-          if (pathname === '/') {
-            router.push('/characters/1')
+          if (pathname === PATHS.HOME) {
+            router.push(PATHS.CHARACTERS)
           }
         } else {
           // No user - store current path and redirect to form
@@ -44,7 +45,7 @@ const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>): Co
             const returnTo = `${pathname}${search ? `?${search}` : ''}`
             sessionStorage.setItem('returnTo', returnTo)
           }
-          router.push('/')
+          router.push(PATHS.HOME)
         }
       }
     }, [user, loading, router, pathname, search])

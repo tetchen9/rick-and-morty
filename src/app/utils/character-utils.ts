@@ -20,7 +20,6 @@ export const getDescription = (origin: string, species: string): string => {
  * @returns A welcome text for the user.
  */
 export const getWelcomeText = (user: UserInfo): string => {
-  if (!user) return ''
   const { name, role } = user
   const article = getAnArticle(role).toLowerCase()
   return `${name}, ${article} ${role} from Earth`

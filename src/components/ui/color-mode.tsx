@@ -7,8 +7,7 @@ import type { ThemeProviderProps } from 'next-themes'
 import * as React from 'react'
 import { LuMoon, LuSun } from 'react-icons/lu'
 
-/* eslint-disable-next-line */
-export interface ColorModeProviderProps extends ThemeProviderProps {}
+export type ColorModeProviderProps = ThemeProviderProps
 
 export function ColorModeProvider(props: ColorModeProviderProps): React.JSX.Element {
   return (
@@ -18,7 +17,7 @@ export function ColorModeProvider(props: ColorModeProviderProps): React.JSX.Elem
 
 export type ColorMode = 'light' | 'dark'
 
-export interface UseColorModeReturn {
+export type UseColorModeReturn = {
   colorMode: ColorMode
   setColorMode: (colorMode: ColorMode) => void
   toggleColorMode: () => void
@@ -26,12 +25,13 @@ export interface UseColorModeReturn {
 
 export function useColorMode(): UseColorModeReturn {
   const { resolvedTheme, setTheme, forcedTheme } = useTheme()
-  const colorMode = forcedTheme || resolvedTheme
+  const colorMode = forcedTheme !== undefined ? forcedTheme : resolvedTheme
   const toggleColorMode = (): void => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+    const currentTheme = resolvedTheme !== null && resolvedTheme !== undefined ? resolvedTheme : 'light'
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark')
   }
   return {
-    colorMode: colorMode as ColorMode,
+    colorMode: (colorMode ?? 'light') as ColorMode,
     setColorMode: setTheme,
     toggleColorMode,
   }
@@ -47,8 +47,7 @@ export function ColorModeIcon(): React.JSX.Element {
   return colorMode === 'dark' ? <LuMoon /> : <LuSun />
 }
 
-/* eslint-disable-next-line */
-interface ColorModeButtonProps extends Omit<IconButtonProps, 'aria-label'> {}
+type ColorModeButtonProps = Omit<IconButtonProps, 'aria-label'>
 
 export const ColorModeButton = React.forwardRef<
   HTMLButtonElement,

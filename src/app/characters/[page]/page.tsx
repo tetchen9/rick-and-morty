@@ -42,7 +42,7 @@ const CharactersPage = (): React.JSX.Element => {
         characters={data?.characters?.results}
         onSelect={setSelectedChar}
       />}
-      {!loading && !!data?.characters?.info?.count && (
+      {!loading && data?.characters?.info?.count !== undefined && data?.characters?.info?.count !== null && (
         <>
           <Pagination
             page={page}

@@ -4,14 +4,14 @@ import { ButtonGroup, IconButton, Pagination as ChakraPagination, Center } from 
 import { useState } from 'react'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 
-interface PaginationProps {
-  /** The current page. */
+type PaginationProps = {
+  /** the current page. */
   page: number,
-  /** The total number of items. */
+  /** the total number of items. */
   count: number,
-  /** The number of items per page. */
+  /** the number of items per page. */
   pageSize: number,
-  /** The function to set the page number. */
+  /** the function to set the page number. */
   setPage: (page: number) => void
 }
 
@@ -20,11 +20,11 @@ interface PaginationProps {
  * It displays the current page, the previous and next buttons,
  * the total number of pages 
  * and three pages between the first and last buttons.
- * @param page - The current page.
- * @param setPage - The function to set the page number.
- * @param count - The total number of items.
- * @param pageSize - The number of items per page.
- * @returns A Chakra UI Pagination component.
+ * @param page - the current page.
+ * @param setPage - the function to set the page number.
+ * @param count - the total number of items.
+ * @param pageSize - the number of items per page.
+ * @returns a Chakra UI Pagination component.
  */
 const Pagination = ({ page, setPage, count, pageSize }: PaginationProps): React.JSX.Element => {
   const [currentPage, setCurrentPage] = useState(page)

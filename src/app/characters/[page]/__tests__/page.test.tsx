@@ -18,7 +18,7 @@ vi.mock('next/navigation', () => ({
   useRouter: vi.fn((): { push: () => void } => ({
     push: vi.fn(),
   })),
-  usePathname: vi.fn((): string => '/characters/1'),
+  usePathname: vi.fn((): string => PATHS.CHARACTERS),
   useSearchParams: vi.fn((): URLSearchParams => new URLSearchParams()),
 }))
 
@@ -45,6 +45,7 @@ vi.mock('@apollo/client', () => ({
 }))
 
 import CharactersPage from '../page'
+import { PATHS } from 'consts/paths'
 
 describe('CharactersPage', () => {
   beforeEach(() => {

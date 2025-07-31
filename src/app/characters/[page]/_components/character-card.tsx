@@ -1,44 +1,31 @@
 'use client'
 
-import { Box, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { useColorModeValue } from 'components/ui/color-mode'
 import type { Character } from 'types/character'
 import { getDescription } from 'app/utils/character-utils'
 import ChakraNextImage from 'components/ui/chakra-next-image'
+import { ClickableCard } from 'components/ui/clickable-card'
 
 /**
  * Displays a character card.
  * It displays the character's name, image, origin and species.
  * It also displays a button to open the character details page.
  * @param char - The character to display.
- * @returns A Chakra UI Box component with a ChakraNextImage, a Text and a Text component inside it.
+ * @param onClick - Function to call when the card is clicked
+ * @returns A ClickableCard component with character information inside it.
  */
-export function CharacterCard({ char }: { char: Character }): React.JSX.Element {
+export function CharacterCard({ char, onClick }: { char: Character, onClick: () => void }): React.JSX.Element {
   const { 
     name, 
     image, 
     origin: { name: originName }, 
     species 
-  } = char || {}
+  } = char
 
   return (
-    <Box
-      as="button"
-      maxW={'26rem'}
-      height="100%"
-      w={'full'}
-      bg={useColorModeValue('white', 'gray.800')}
-      boxShadow={'sm'}
-      rounded={'lg'}
-      p={6}
-      textAlign={'center'}
-      cursor="pointer"
-      _hover={{ bg: useColorModeValue('gray.100', 'gray.700')}}
-      _focusVisible={{
-        outline: '2px solid',
-        outlineColor: useColorModeValue('gray.400', 'gray.300'), // adjust color as needed
-        outlineOffset: '2px'
-      }}
+    <ClickableCard 
+      onClick={onClick}
       aria-label={`Open details for ${name}`}
     >
       <ChakraNextImage 
@@ -61,6 +48,6 @@ export function CharacterCard({ char }: { char: Character }): React.JSX.Element 
       >
         {getDescription(originName, species)}
       </Text>
-    </Box>
+    </ClickableCard>
   )
 }
