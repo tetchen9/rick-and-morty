@@ -1,8 +1,8 @@
 # Rick and Morty Characters App
 
-This project lets a user browse a list of characters appearing in Rick and Morty series, the data comes from an open Rick and Morty GraphQL API (https://rickandmortyapi.com/graphql).
+This project lets a user browse a list of characters appearing in Rick and Morty series, the data comes from an open Rick and Morty GraphQL API (`https://rickandmortyapi.com/graphql`).
 
-Built with TypeScript and Next.js. Uses Chakra UI as a components library.
+Built with `TypeScript` and `Next.js`. Uses `Chakra UI` as a components library.
 
 ## Features
 
@@ -30,23 +30,25 @@ There's error handling for failed API call, attempts to access pages outside of 
 
 ## Implementation Details
 
-The app is built with Next.js App Router, uses Apollo Client for efficient data fetching. The interface is built with Chakra UI v3.
+The app is built with `Next.js App Router`, uses `Apollo Client` for efficient data fetching. The interface is built with `Chakra UI` v3.
 
 ### State Management
 
-- React Context API is used for a custom user context for authentication and profile management.
-- Apollo Client is used for GraphQL state management with caching and optimistic updates.
-- Session Storage is used for navigation state.
+- `React Context API` is used for a custom user context for authentication and profile management.
+- `Apollo client` is used for `GraphQL` state management with caching and optimistic updates.
+- `sessionStorage` is used for navigation state.
+- `localStorage` is used for storing user data.
 
 ### Testing and Code quality
 
-Unit tests are written with Vitest and Testing Library (the coverage is unsufficient at the moment, fuller coverage was descoped to meet time boundaries).
+Unit tests are written with `Vitest` and `Testing Library` (the coverage is unsufficient at the moment, fuller coverage was descoped to meet time boundaries).
 Code linting and style enforcement is done with the help of ESlint, with a typescript plugin.
 
 ### Performance Optimizations
 
-- Automatic code splitting with Next.js
-- Apollo Client caching for GraphQL queries
+- Automatic code splitting with `Next.js`
+- Images optimization with `Next.js`
+- `Apollo Client` caching for `GraphQL queries`
 - Suspense boundaries for better loading experience
 
 ## Getting Started
@@ -92,11 +94,11 @@ Code linting and style enforcement is done with the help of ESlint, with a types
 
 ```
 src/
-├── app/                    # Next.js App Router pages
-│   ├── characters/         # Character listing pages
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Home page with user form
-├── components/            # Reusable React components
+├── app/                  # Next.js App Router pages
+│   ├── characters/       # Character listing pages
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page with user form
+├── components/           # Reusable React components
 │   └──ui/                # Base UI components
 ├── context/              # React Context providers
 ├── hooks/                # Custom React hooks
@@ -121,4 +123,4 @@ src/
 ## Deployment
 
 The project is deployed with Vercel at
-https://rick-and-morty-levandovska.vercel.app/
+`https://rick-and-morty-levandovska.vercel.app/`
