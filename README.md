@@ -11,15 +11,13 @@ Built with TypeScript and Next.js. Uses Chakra UI as a components library.
 The app allows to browse through all Rick and Morty characters using pagination.
 
 &nbsp;
-<img width="801" alt="image" src="https://github.com/user-attachments/assets/e07b45c2-9ec9-4c47-a665-256c3e005b1f" />
-
+<img width="807" height="609" alt="image" src="https://github.com/user-attachments/assets/ec16cfa7-9fad-426e-a29c-93b720cb7c94" />
 &nbsp;
 
 Each character has detailed information, including location, species, origin and a list of episodes where he appeared.
 
 &nbsp;
-<img width="801" alt="image" src="https://github.com/user-attachments/assets/a8405794-ef84-46de-8c4e-cb3c82f998f6" />
-
+<img width="807" alt="image" src="https://github.com/user-attachments/assets/a2f69164-08f4-4567-9dc3-1e8737441041" />
 &nbsp;
 
 The user of the app can create and edit their profile with name and job title.
