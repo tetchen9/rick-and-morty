@@ -12,7 +12,7 @@ import { useUser } from 'hooks/use-user'
  * It displays a form to enter the user's name and job title.
  * @returns A Chakra UI Box component with a AppHeading and a NameForm component inside it.
  */
-const HomeContent = () => {
+const HomeContent = (): React.JSX.Element | null => {
   const [mounted, setMounted] = useState(false)
   const { loading } = useUser()
   const searchParams = useSearchParams()
@@ -49,7 +49,7 @@ const HomeContent = () => {
  * It uses a suspense fallback to display a loading component.
  * @returns A Chakra UI Box component with a HomeContent component inside it.
  */
-export default function Home() {
+export default function Home(): React.JSX.Element | null {
   const [mounted, setMounted] = useState(false)
   
   useEffect(() => {

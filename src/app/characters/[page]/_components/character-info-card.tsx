@@ -24,7 +24,7 @@ export interface CharacterInfoCardProps {
  * @param loading - Whether the character details are loading.
  * @returns A Chakra UI Box component character details.
  */
-export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoCardProps) {
+export function CharacterInfoCard({ char, charDetails, loading }: CharacterInfoCardProps): React.JSX.Element {
   const { 
     name, 
     image, 

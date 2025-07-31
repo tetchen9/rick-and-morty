@@ -33,7 +33,7 @@ function withClient<T extends object>(options: T): T & { client?: typeof client 
  * @param onClose - The function to call when the modal is closed.
  * @returns A Chakra UI Dialog component with the character details.
  */
-const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps) => {
+const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps): React.JSX.Element => {
   const modalRef = useRef<HTMLDivElement>(null)
   const open = !!selectedChar
   const { id, name } = selectedChar || {}
@@ -59,7 +59,7 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps) => {
       document.addEventListener('mousedown', handleClickOutside)
     }
 
-    return () => {
+    return (): void => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [open, handleClickOutside])
@@ -69,7 +69,7 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps) => {
       placement="center"
       motionPreset="slide-in-bottom"
       open={open}
-      onEscapeKeyDown={onClose}
+      onEscapeKeyDown={(): void => onClose()}
       lazyMount
     >
       <Portal>
@@ -88,7 +88,7 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps) => {
               />}
             </Dialog.Body>
             <Dialog.CloseTrigger asChild>
-              <CloseButton size="sm" onClick={onClose} aria-label="Close" />
+              <CloseButton size="sm" onClick={(): void => onClose()} aria-label="Close" />
             </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>

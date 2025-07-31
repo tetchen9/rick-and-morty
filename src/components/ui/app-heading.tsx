@@ -12,7 +12,7 @@ type AppHeadingProps = {
  * @param title - The title of the heading.
  * @returns A Chakra UI Heading component.
  */
-export default function AppHeading({ title }: AppHeadingProps) {
+export default function AppHeading({ title }: AppHeadingProps): React.JSX.Element {
   return (
     <Heading
       as={'h1'}

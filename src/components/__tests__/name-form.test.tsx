@@ -6,18 +6,18 @@ import NameForm from '../name-form'
 
 const mockPush = vi.fn()
 vi.mock('next/navigation', () => ({
-  useRouter: () => ({
+  useRouter: (): { push: () => void } => ({
     push: mockPush,
   }),
 }))
 
 const mockUseUser = vi.fn()
 vi.mock('hooks/use-user', () => ({
-  useUser: (...args: unknown[]) => mockUseUser(...args),
+  useUser: (...args: unknown[]): unknown => mockUseUser(...args),
 }))
 
 vi.mock('context/user-context', () => ({
-  UserProvider: ({ children }: { children: React.ReactNode }) => children,
+  UserProvider: ({ children }: { children: React.ReactNode }): React.ReactNode => children,
 }))
 
 describe('NameForm', () => {
@@ -69,9 +69,9 @@ describe('NameForm', () => {
       </UserProvider>
     )
     const { getByLabelText } = within(container)
-    expect((getByLabelText(/username/i) as HTMLInputElement).value)
+    expect((getByLabelText(/username/i)).value)
       .toBe('James Joyce')
-    expect((getByLabelText(/job title/i) as HTMLInputElement).value)
+    expect((getByLabelText(/job title/i)).value)
       .toBe('choreographer')
   })
 
@@ -90,9 +90,9 @@ describe('NameForm', () => {
     )
 
     const { getByLabelText } = within(container)
-    expect((getByLabelText(/username/i) as HTMLInputElement).value)
+    expect((getByLabelText(/username/i)).value)
       .toBe('')
-    expect((getByLabelText(/job title/i) as HTMLInputElement).value)
+    expect((getByLabelText(/job title/i)).value)
       .toBe('')
   })
 })

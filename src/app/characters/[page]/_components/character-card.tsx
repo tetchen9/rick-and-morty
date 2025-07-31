@@ -13,7 +13,7 @@ import ChakraNextImage from 'components/ui/chakra-next-image'
  * @param char - The character to display.
  * @returns A Chakra UI Box component with a ChakraNextImage, a Text and a Text component inside it.
  */
-export function CharacterCard({ char }: { char: Character }) {
+export function CharacterCard({ char }: { char: Character }): React.JSX.Element {
   const { 
     name, 
     image, 

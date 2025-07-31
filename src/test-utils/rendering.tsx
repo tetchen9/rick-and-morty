@@ -7,6 +7,6 @@ import { render as rtlRender, RenderOptions } from '@testing-library/react'
  * @param options - The options for the render.
  * @returns The rendered ReactNode.
  */
-export function render(ui: React.ReactNode, options?: RenderOptions) {
+export function render(ui: React.ReactNode, options?: RenderOptions): ReturnType<typeof rtlRender> {
   return rtlRender(<Provider>{ui}</Provider>, options)
 }

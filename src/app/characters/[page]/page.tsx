@@ -17,7 +17,7 @@ import OutOfRangeMessage from './_components/out-of-range-message'
 
 const PAGE_SIZE = 20
 
-const CharactersPage = () => {
+const CharactersPage = (): React.JSX.Element => {
   const params = useParams()
   const router = useRouter()
   const page = Number(params.page) || 1
@@ -28,7 +28,7 @@ const CharactersPage = () => {
     client,
   })
 
-  const setPage = (newPage: number) => {
+  const setPage = (newPage: number): void => {
     router.push(`/characters/${newPage}`)
   }
 

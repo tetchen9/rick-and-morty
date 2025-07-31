@@ -26,8 +26,8 @@ const SKELETON_COUNT = 8
 const CharacterList = ({
   isLoading = false,
   characters,
-  onSelect = () => {},
-}: CharacterListProps) => { 
+  onSelect = (): void => {},
+}: CharacterListProps): React.JSX.Element => { 
   return (
     <List.Root
       as="ul"

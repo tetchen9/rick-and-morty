@@ -19,7 +19,7 @@ const STORAGE_KEY = 'user-info'
  * @param children - The children of the provider.
  * @returns A UserContext.Provider component.
  */
-export function UserProvider({ children }: { children: ReactNode }) {
+export function UserProvider({ children }: { children: ReactNode }): React.JSX.Element {
   const [user, setUserState] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -30,12 +30,12 @@ export function UserProvider({ children }: { children: ReactNode }) {
     setLoading(false)
   }, [])
 
-  const setUser = (user: UserInfo) => {
+  const setUser = (user: UserInfo): void => {
     setUserState(user)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
   }
 
-  const clearUser = () => {
+  const clearUser = (): void => {
     setUserState(null)
     localStorage.removeItem(STORAGE_KEY)
   }

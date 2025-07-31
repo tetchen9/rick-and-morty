@@ -14,7 +14,7 @@ const HOME_URL = '/characters/1'
  * @param children - The children of the link.
  * @returns A Chakra UI Box component with a NextLink component inside it.
  */
-export const HomeLink = ({ href = HOME_URL, children = 'home' }: HomeLinkProps) => {
+export const HomeLink = ({ href = HOME_URL, children = 'home' }: HomeLinkProps): React.JSX.Element => {
   return (
     <Box asChild textDecoration="underline">
       <NextLink href={href} >

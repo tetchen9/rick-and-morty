@@ -26,7 +26,7 @@ interface PaginationProps {
  * @param pageSize - The number of items per page.
  * @returns A Chakra UI Pagination component.
  */
-const Pagination = ({ page, setPage, count, pageSize }: PaginationProps) => {
+const Pagination = ({ page, setPage, count, pageSize }: PaginationProps): React.JSX.Element => {
   const [currentPage, setCurrentPage] = useState(page)
   return (
     <ChakraPagination.Root

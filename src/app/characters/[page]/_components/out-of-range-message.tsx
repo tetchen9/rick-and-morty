@@ -11,7 +11,7 @@ export type OutOfRangeMessageProps = {
  * @param page - The page number.
  * @returns A Chakra UI Box component with a Text component inside it.
  */
-const OutOfRangeMessage = ({ page }: OutOfRangeMessageProps) => {
+const OutOfRangeMessage = ({ page }: OutOfRangeMessageProps): React.JSX.Element => {
   return (
     <Box p={6}>
       Page {page} is out of reach, try to go to <HomeLink>first page</HomeLink>

@@ -5,21 +5,21 @@ import { mockCharacters } from 'test-utils/mock-characters'
 
 // Mock useUser to always return a user
 vi.mock('hooks/use-user', () => ({
-  useUser: () => ({ user: { name: 'James Joyce', role: 'choreographer' } }),
+  useUser: (): { user: { name: string; role: string } } => ({ user: { name: 'James Joyce', role: 'choreographer' } }),
 }))
 
 vi.mock('context/user-context', () => ({
-  UserProvider: ({ children }: { children: React.ReactNode }) => children,
+  UserProvider: ({ children }: { children: React.ReactNode }): React.ReactNode => children,
 }))
 
 const useParamsMock = vi.fn()
 vi.mock('next/navigation', () => ({
-  useParams: (...args: unknown[]) => useParamsMock(...args),
-  useRouter: vi.fn(() => ({
+  useParams: (...args: unknown[]): unknown => useParamsMock(...args),
+  useRouter: vi.fn((): { push: () => void } => ({
     push: vi.fn(),
   })),
-  usePathname: vi.fn(() => '/characters/1'),
-  useSearchParams: vi.fn(() => new URLSearchParams()),
+  usePathname: vi.fn((): string => '/characters/1'),
+  useSearchParams: vi.fn((): URLSearchParams => new URLSearchParams()),
 }))
 
 // Mock apollo-client
@@ -35,13 +35,13 @@ vi.mock('queries/characters', () => ({
 
 // Mock withAuthGuard to just return the component
 vi.mock('context/with-user-guard', () => ({
-  default: (comp: unknown) => comp,
+  default: (comp: unknown): unknown => comp,
 }))
 
 // Mock useQuery from @apollo/client
 const mockUseQuery = vi.fn()
 vi.mock('@apollo/client', () => ({
-  useQuery: (...args: unknown[]) => mockUseQuery(...args),
+  useQuery: (...args: unknown[]): unknown => mockUseQuery(...args),
 }))
 
 import CharactersPage from '../page'

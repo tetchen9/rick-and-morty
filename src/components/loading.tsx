@@ -4,7 +4,7 @@ import { Spinner, Text, VStack } from '@chakra-ui/react'
  * Displays a loading spinner.
  * @returns A Chakra UI component with a Spinner and a Text.
  */
-const Loading = () => {
+const Loading = (): React.JSX.Element => {
   return (
     <VStack colorPalette="teal" minHeight="100vh" justifyContent="center" alignItems="center">
       <Spinner color="colorPalette.600" />

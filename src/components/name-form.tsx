@@ -36,7 +36,7 @@ const NameForm = (): ReactElement => {
     return null
   }
 
-  const handleNavigation = () => {
+  const handleNavigation = (): void => {
     let returnTo: string | null = null
     if (typeof window !== 'undefined') {
       returnTo = sessionStorage.getItem('returnTo')
@@ -45,7 +45,7 @@ const NameForm = (): ReactElement => {
     router.push(returnTo || '/characters/1')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault()
     const validationError = validateForm()
     if (validationError) {

@@ -18,7 +18,7 @@ const mocks = [
   },
 ]
 
-const renderWithMocks = (component: React.ReactElement) =>
+const renderWithMocks = (component: React.ReactElement): ReturnType<typeof render> =>
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       {component}

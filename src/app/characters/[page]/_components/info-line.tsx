@@ -12,7 +12,7 @@ export type InfoLineProps = {
  * @param title - The title to display.
  * @returns A Chakra UI component with a Text component inside it.
  */
-export const InfoLine = ({ value, title }: InfoLineProps) => {
+export const InfoLine = ({ value, title }: InfoLineProps): React.JSX.Element => {
   return (
     <Stack 
       direction={['column', 'row']}

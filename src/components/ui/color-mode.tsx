@@ -10,7 +10,7 @@ import { LuMoon, LuSun } from 'react-icons/lu'
 /* eslint-disable-next-line */
 export interface ColorModeProviderProps extends ThemeProviderProps {}
 
-export function ColorModeProvider(props: ColorModeProviderProps) {
+export function ColorModeProvider(props: ColorModeProviderProps): React.JSX.Element {
   return (
     <ThemeProvider attribute="class" disableTransitionOnChange {...props} />
   )
@@ -27,7 +27,7 @@ export interface UseColorModeReturn {
 export function useColorMode(): UseColorModeReturn {
   const { resolvedTheme, setTheme, forcedTheme } = useTheme()
   const colorMode = forcedTheme || resolvedTheme
-  const toggleColorMode = () => {
+  const toggleColorMode = (): void => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
   }
   return {
@@ -37,12 +37,12 @@ export function useColorMode(): UseColorModeReturn {
   }
 }
 
-export function useColorModeValue<T>(light: T, dark: T) {
+export function useColorModeValue<T>(light: T, dark: T): T {
   const { colorMode } = useColorMode()
   return colorMode === 'dark' ? dark : light
 }
 
-export function ColorModeIcon() {
+export function ColorModeIcon(): React.JSX.Element {
   const { colorMode } = useColorMode()
   return colorMode === 'dark' ? <LuMoon /> : <LuSun />
 }

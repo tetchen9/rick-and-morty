@@ -14,7 +14,7 @@ import { system } from '@chakra-ui/react/preset'
  * @param props - The props of the provider.
  * @returns A Chakra UI Provider component.
  */
-export function Provider({ children, ...props }: ColorModeProviderProps & { children: React.ReactNode }) {
+export function Provider({ children, ...props }: ColorModeProviderProps & { children: React.ReactNode }): React.JSX.Element {
   return (
     <ChakraProvider value={system}>
       <ColorModeProvider {...props}>

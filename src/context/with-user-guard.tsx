@@ -15,8 +15,8 @@ import Loading from 'components/loading'
  * @param WrappedComponent - The component to protect.
  * @returns A component that protects the route.
  */
-const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>) => {
-  const AuthGuardComponent = (props: P) => {
+const withAuthGuard = <P extends object>(WrappedComponent: ComponentType<P>): ComponentType<P> => {
+  const AuthGuardComponent = (props: P): React.JSX.Element => {
     const { user, loading } = useUser()
     const router = useRouter()
     const pathname = usePathname()
