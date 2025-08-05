@@ -1,5 +1,6 @@
 
 import { Container, Text } from '@chakra-ui/react'
+import { memo } from 'react'
 
 const version = process.env.NEXT_PUBLIC_VERSION ?? 'dev'
 
@@ -9,10 +10,12 @@ const version = process.env.NEXT_PUBLIC_VERSION ?? 'dev'
  * @param version - The version of the app.
  * @returns A Chakra UI Container component with a Text component inside it.
  */
-export const Footer = (): React.JSX.Element => (
+const Footer = (): React.JSX.Element => (
   <Container as="footer" py={{ base: '2', md: '6' }}>
     <Text fontSize="sm" color="fg.muted" textAlign="right">
       Rick and Morty | Version: {version}
     </Text>
   </Container>
 )
+
+export default memo(Footer)

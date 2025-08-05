@@ -7,7 +7,7 @@ import { HomeLink } from 'components/ui/home-link'
  */
 const Custom404 = (): React.JSX.Element => {
   return (
-    <Center minH={['50vh', '100vh']} width="100%" p={6}>
+    <Center minH={['50vh', '66vh']} width="100%" p={6}>
       <Stack>
         <Heading as='h1'>
           Nobody exists on purpose. Nobody belongs anywhere. 

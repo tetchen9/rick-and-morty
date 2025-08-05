@@ -1,8 +1,8 @@
 import { Flex, Box } from '@chakra-ui/react'
 import { ColorModeScript } from '@chakra-ui/color-mode'
-import { Footer } from 'components/ui/footer'
 import { Provider } from 'components/ui/provider'
 import { UserProvider } from 'context/user-context'
+import Footer from 'components/ui/footer'
 
 /**
  * RootLayout is the main layout of the app, providing the user context, 
@@ -22,14 +22,14 @@ export default function RootLayout({
       </head>
       <body>
         <title>Rick and Morty</title>
-        <UserProvider>
-          <Provider>
-            <Flex minH="100vh" flexDirection="column">
+        <Provider>
+          <Flex minH="100vh" flexDirection="column">
+            <UserProvider>
               <Box flex="1">{children}</Box>
-              <Footer />
-            </Flex>
-          </Provider>
-        </UserProvider>
+            </UserProvider>
+            <Footer />
+          </Flex>
+        </Provider>
       </body>
     </html>
   )
