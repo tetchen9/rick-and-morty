@@ -26,7 +26,7 @@ const CharactersPage = (): React.JSX.Element => {
   const { results, info: { count } = {} } = characters ?? {}
 
   const setPage = (newPage: number): void => {
-    router.push(`${PATHS.CHARACTERS}/${newPage}`)
+    router.push(`${PATHS.CHARACTERS_BASE}/${newPage}`)
   }
 
   return (

@@ -1,4 +1,5 @@
 export const PATHS = {
   HOME: '/',
-  CHARACTERS: '/characters',
+  CHARACTERS_BASE: '/characters',
+  CHARACTERS: '/characters/1',
 } as const
