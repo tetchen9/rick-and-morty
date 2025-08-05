@@ -19,16 +19,7 @@ const nextConfig: NextConfig = {
         hostname: 'rickandmortyapi.com',
       },
     ],
-  },
-  async redirects() {
-    return [
-      {
-        source: '/characters', 
-        destination: '/characters/1', 
-        permanent: true,
-      },
-    ];
-  },
+  }
 }
 
 export default nextConfig

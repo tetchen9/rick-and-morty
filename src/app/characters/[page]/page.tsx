@@ -1,10 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useQuery } from '@apollo/client'
-import client from 'lib/apollo-client'
 import { useParams, useRouter } from 'next/navigation'
-import { GET_CHARACTERS } from 'queries/characters'
 import AppHeading from 'components/ui/app-heading'
 import type { Character } from 'types/character'
 import withAuthGuard from 'context/with-user-guard'
@@ -13,7 +10,9 @@ import ErrorMessage from 'components/ui/error-message'
 import Pagination from 'components/ui/pagination'
 import CharacterList from 'app/characters/[page]/_components/character-list'
 import CharacterModal from 'app/characters/[page]/_components/character-modal'
-import OutOfRangeMessage from './_components/out-of-range-message'
+import OutOfRangeMessage from 'app/characters/[page]/_components/out-of-range-message'
+import { useCharacters } from 'hooks/use-characters'
+import { PATHS } from 'consts/paths'
 
 const PAGE_SIZE = 20
 
@@ -23,13 +22,11 @@ const CharactersPage = (): React.JSX.Element => {
   const page = Number(params.page) || 1
   const [selectedChar, setSelectedChar] = useState<Character | null>(null)
 
-  const { loading, error, data } = useQuery(GET_CHARACTERS, {
-    variables: { page },
-    client,
-  })
+  const { loading, error, characters } = useCharacters(page)
+  const { results, info: { count } = {} } = characters ?? {}
 
   const setPage = (newPage: number): void => {
-    router.push(`/characters/${newPage}`)
+    router.push(`${PATHS.CHARACTERS}/${newPage}`)
   }
 
   return (
@@ -39,15 +36,15 @@ const CharactersPage = (): React.JSX.Element => {
       {error && <ErrorMessage message={error.message} />}
       {!error && <CharacterList
         isLoading={loading}
-        characters={data?.characters?.results}
+        characters={results}
         onSelect={setSelectedChar}
       />}
-      {!loading && data?.characters?.info?.count !== undefined && data?.characters?.info?.count !== null && (
+      {!loading && count !== undefined && count !== null && (
         <>
           <Pagination
             page={page}
             setPage={setPage}
-            count={data.characters.info.count}
+            count={count}
             pageSize={PAGE_SIZE}
           />
           <CharacterModal 
@@ -58,7 +55,7 @@ const CharactersPage = (): React.JSX.Element => {
           />
         </>
       )}
-      {!loading && data?.characters?.info?.count === null && (
+      {!loading && count === null && (
         <OutOfRangeMessage page={page} />
       )}
     </main>

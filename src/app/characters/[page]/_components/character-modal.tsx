@@ -1,26 +1,14 @@
 import { Dialog, Portal, CloseButton, Text } from '@chakra-ui/react'
-import { useQuery } from '@apollo/client'
-import { GET_CHARACTER_DETAILS_BY_ID } from 'queries/characters'
 import { CharacterInfoCard } from './character-info-card'
-import type { CharacterDetails, Character } from 'types/character'
+import type { Character } from 'types/character'
 import { useEffect, useRef, useCallback } from 'react'
-import client from 'lib/apollo-client'
+import { useCharacterDetails } from 'hooks/use-character-details'
 
 type CharacterModalProps = {
   /** the character to display. */
   selectedChar: Character | null
   /** the function to call when the modal is closed. */
   onClose: () => void
-}
-
-/**
- * A helper function to add the Apollo client to the options.
- * It is used to avoid the Apollo client being added in the test environment.
- * @param options - the options to add the client to.
- * @returns the options with the client.
- */
-function withClient<T extends object>(options: T): T & { client?: typeof client } {
-  return process.env.NODE_ENV !== 'test' ? { ...options, client } : options
 }
 
 /**
@@ -37,15 +25,8 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps): React.J
   const modalRef = useRef<HTMLDivElement>(null)
   const open = !!selectedChar
   const { id, name } = selectedChar || {}
-  const { loading, error, data } = useQuery<{
-    character: CharacterDetails
-  }>(
-    GET_CHARACTER_DETAILS_BY_ID,
-    withClient({
-      variables: { id },
-      skip: id === undefined,
-    })
-  )
+  
+  const { loading, error, characterDetails } = useCharacterDetails(id)
 
   // Handle clicks outside the modal
   const handleClickOutside = useCallback((event: MouseEvent) => {
@@ -83,7 +64,7 @@ const CharacterModal = ({ selectedChar, onClose }: CharacterModalProps): React.J
               {error && <Text color="red.400">Error loading details</Text>}
               {!!selectedChar && <CharacterInfoCard 
                 char={selectedChar} 
-                charDetails={data?.character} 
+                charDetails={characterDetails} 
                 loading={loading}
               />}
             </Dialog.Body>
